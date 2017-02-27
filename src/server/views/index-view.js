@@ -10,16 +10,11 @@ import fetch from 'isomorphic-fetch'
 
 const Promise = require("bluebird");
 
-let docs = {
-  total: {value: 0},
-  data: {docs: []}
-}
-
 function createReduxStore(req, match) { // eslint-disable-line
   return fetch(`http://api.lfum.es`)
   .then(response => response.json())
   .then(json => {
-    docs = {
+    const docs = {
       total: {value: json.total},
       data: {docs: json._embedded}
     };

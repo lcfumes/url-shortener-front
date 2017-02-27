@@ -9,8 +9,8 @@ module.exports = {
   },
   manifest: {
     background: "#FFFFFF",
-    title: "url-shortener-front",
-    short_name: "PWA",
+    title: "URL Shortener",
+    short_name: "lfum.es",
     theme_color: "#FFFFFF"
   }
 };
