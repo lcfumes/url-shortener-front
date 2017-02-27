@@ -1,6 +1,6 @@
 "use strict";
 
-const defaultListenPort = 3000;
+const defaultListenPort = 3030;
 
 const portFromEnv = () => {
   const x = parseInt(process.env.PORT, 10);
@@ -25,7 +25,7 @@ module.exports = {
     "webapp": {
       "module": "electrode-react-webapp/lib/hapi",
       "options": {
-        "pageTitle": "url-shortener-front",
+        "pageTitle": "lfum.es - Url Shortener",
         "paths": {
           "/{args*}": {
             "content": {
