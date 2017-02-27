@@ -6,17 +6,29 @@ import ReduxRouterEngine from "electrode-redux-router-engine";
 import {routes} from "../../client/routes";
 import {createStore} from "redux";
 import rootReducer from "../../client/reducers";
+import fetch from 'isomorphic-fetch'
 
 const Promise = require("bluebird");
 
-function createReduxStore(req, match) { // eslint-disable-line
-  const initialState = {
-    checkBox: {checked: false},
-    number: {value: 10}
-  };
+let docs = {
+  total: {value: 0},
+  data: {docs: []}
+}
 
-  const store = createStore(rootReducer, initialState);
-  return Promise.resolve(store);
+function createReduxStore(req, match) { // eslint-disable-line
+  return fetch(`http://api.lfum.es`)
+  .then(response => response.json())
+  .then(json => {
+    docs = {
+      total: {value: json.total},
+      data: {docs: json._embedded}
+    };
+    const store = createStore(rootReducer, docs);
+    return Promise.resolve(store);
+  })
+  .catch(function(response) {
+    console.error('ERRO', response);
+  })
 }
 
 //

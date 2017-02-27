@@ -8,10 +8,11 @@ import {toggleCheck, incNumber, decNumber} from "../actions";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
-
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import Subheader from 'material-ui/Subheader';
+import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -19,69 +20,65 @@ injectTapEventPlugin();
 class Home extends React.Component {
   render() {
     const props = this.props;
-    const {checked, value} = props;
+    const {total, data} = props;
+  
     return (
       <MuiThemeProvider>
         <div>
-          <div></div>
           <AppBar
             title="URL Shortener"
             showMenuIconButton={false}
           />
-          <Paper style={{margin: 20, padding: 20}} zDepth={1}>
-            <TextField 
-              hintText="Enter your url address" 
-              style ={{width: '100%'}}
-              inputStyle ={{width: '100%'}} 
-              underlineShow={true} 
-            />
-          </Paper>
+          <div style={{margin: 20}}>
+            <Paper style={{padding: 10}} zDepth={1}>
+              <TextField 
+                hintText="Enter your url address" 
+                style ={{width: '100%'}}
+                inputStyle ={{width: '100%'}} 
+                underlineShow={true} 
+              />
+            </Paper>
+            <Paper
+              style={{marginTop: 20}}
+              rounded={false}
+              zDepth={1}
+            >
+               <Toolbar>
+                <ToolbarTitle text="Recents URL's" />
+              </Toolbar>
+              <Table style={{marginTop: 20}} fixedHeader={true} selectable={false}>
+                <TableHeader displaySelectAll={false} adjustForCheckbox={false} selectable={false}>
+                  <TableRow>
+                    <TableHeaderColumn style={{width: "20%"}}>Short URL</TableHeaderColumn>
+                    <TableHeaderColumn>Original URL</TableHeaderColumn>
+                  </TableRow>
+                </TableHeader>
+                <TableBody displayRowCheckbox={false}>
+                  {data.docs.map((doc) => {
+                    return <TableRow>
+                        <TableRowColumn style={{width: "20%"}}>http://lfum.es/{doc.hash}</TableRowColumn>
+                        <TableRowColumn>{doc.url}</TableRowColumn>
+                      </TableRow>
+                    })}
+                </TableBody>
+              </Table>
+            </Paper>
+          </div>
         </div>
       </MuiThemeProvider>
     );
-    // return (
-    // <RaisedButton label="Primary" primary={true} onClick={props.onIncrease} label="Increase" /> 
-          // <RaisedButton label="Secondary" secondary={true} onClick={props.onDecrease} label="Decrease" />
-          // <Badge
-          //   badgeContent={value}
-          //   secondary={true}
-          //   badgeStyle={{top: 12, right: 12}}
-          // >
-          //   <IconButton tooltip="Notifications">
-          //     <NotificationsIcon />
-          //   </IconButton>
-          // </Badge>
-    //   <MuiThemeProvider>
-    //     {/**/}
-    //     <Notifications />
-    //     {/**/}
-    //     <h1>Hello <a href={"https://github.com/electrode-io"}>{"Electrode"}</a></h1>
-    //     <div>
-    //       <h2>Managing States with Redux</h2>
-    //       <label>
-    //         <input onChange={props.onChangeCheck} type={"checkbox"} checked={checked}/>
-    //         Checkbox
-    //       </label>
-    //       <div>
-    //         <RaisedButton label="Primary" primary={true} style={style} />
-    //         <button type={"button"} onClick={props.onDecrease}>-</button>
-    //         &nbsp;{value}&nbsp;
-    //         <button type={"button"} onClick={props.onIncrease}>+</button>
-    //       </div>
-    //     </div>
-    //   </MuiThemeProvider>
-    // );
   }
 }
 
 Home.propTypes = {
-  checked: PropTypes.bool,
-  value: PropTypes.number.isRequired
+  total: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    checked: state.checkBox.checked, value: state.number.value
+    total: state.total,
+    data: state.data
   };
 };
 

@@ -38,6 +38,7 @@
     "heroku-postbuild": "gulp build"
   },
   "dependencies": {
+    "axios": "^0.15.3",
     "bluebird": "^3.4.6",
     "electrode-archetype-react-app": "^2.0.0",
     "electrode-auto-ssr": "^1.0.0",
