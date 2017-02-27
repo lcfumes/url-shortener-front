@@ -32,7 +32,7 @@ class Home extends React.Component {
           <div style={{margin: 20}}>
             <Paper style={{padding: 10}} zDepth={1}>
               <TextField 
-                hintText="Enter your url address" 
+                hintText="Enter your original URL here" 
                 style ={{width: '100%'}}
                 inputStyle ={{width: '100%'}} 
                 underlineShow={true} 
