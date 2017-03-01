@@ -38,8 +38,10 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      url: null
+      url: ""
     }
+
+    this.handleResetState = this.handleResetState.bind(this);
   }
 
   handleKeyPress(e) {
@@ -47,6 +49,12 @@ class Home extends React.Component {
     this.setState({
         [e.target.id]: e.target.value
     })
+  }
+
+  handleResetState() {
+    this.setState({
+      url: ""
+    });
   }
 
   render() {
@@ -70,13 +78,14 @@ class Home extends React.Component {
                 underlineShow={true} 
                 onChange={(e) => this.handleKeyPress(e)}
                 id="url"
+                value={this.state.url}
               />
               <RaisedButton
                 label="Shorten URL"
                 labelPosition="before"
                 primary={true}
                 icon={<FontIcon className="material-icons">link</FontIcon>}
-                onClick={(e) => props.shortenUrl(this.state.url)}
+                onClick={(e) => props.shortenUrl(this.state.url, this.handleResetState)}
               />
             </Paper>
           <div>
@@ -140,7 +149,7 @@ const reloadUrl = (dispatch) => {
   })
 }
 
-const createUrl = (dispatch, url) => {
+const createUrl = (dispatch, url, callback) => {
   return fetch(apiUri, {
     method: 'POST',
     headers: {
@@ -153,6 +162,7 @@ const createUrl = (dispatch, url) => {
   .then(response => response.json())
   .then(json => {
     reloadUrl(dispatch);
+    callback();
     console.log(json);
   })
 }
@@ -162,8 +172,8 @@ const mapDispatchToProps = (dispatch) => {
     reloadUrl() {
       return reloadUrl(dispatch)
     },
-    shortenUrl(url) {
-      createUrl(dispatch, url)
+    shortenUrl(url, callback) {
+      createUrl(dispatch, url, callback)
     }
   };
 };
