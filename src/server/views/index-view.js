@@ -7,18 +7,22 @@ import {routes} from "../../client/routes";
 import {createStore} from "redux";
 import rootReducer from "../../client/reducers";
 import fetch from 'isomorphic-fetch'
+import electrodeConfippet from "electrode-confippet";
 
 const Promise = require("bluebird");
 
 function createReduxStore(req, match) { // eslint-disable-line
-  return fetch(`http://api.lfum.es`)
+  return fetch(electrodeConfippet.config.application.uri)
   .then(response => response.json())
   .then(json => {
-    const docs = {
-      total: {value: json.total},
-      data: {docs: json._embedded}
+    const initState = {
+      uri: electrodeConfippet.config.application.uri,
+      docs: {
+        total: {value: json.total},
+        data: {docs: json._embedded}
+      }
     };
-    const store = createStore(rootReducer, docs);
+    const store = createStore(rootReducer, initState);
     return Promise.resolve(store);
   })
   .catch(function(response) {

@@ -18,7 +18,6 @@ import injectTapEventPlugin from "react-tap-event-plugin";
 
 window.webappStart = () => {
   injectTapEventPlugin(); // https://github.com/callemall/material-ui/issues/4670
-
 };
 
 // Add the client app start up code to a function as window.webappStart.

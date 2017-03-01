@@ -1,17 +1,8 @@
-export const toggleCheck = () => {
-  return {
-    type: "TOGGLE_CHECK"
-  };
-};
+import fetch from 'isomorphic-fetch';
 
-export const incNumber = () => {
-  return {
-    type: "INC_NUMBER"
-  };
-};
-
-export const decNumber = () => {
-  return {
-    type: "DEC_NUMBER"
-  };
-};
+export const fetchRequestSuccess = (payload) => {
+	return {
+    type: "FETCH_SUCCESS",
+    payload
+  }
+}
