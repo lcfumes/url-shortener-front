@@ -9,6 +9,7 @@ const Promise = require("bluebird");
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 import FontIcon from 'material-ui/FontIcon';
+import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
@@ -18,10 +19,40 @@ import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
+const styles = {
+  paperUrl:{
+    flex: 1,
+    height: '100%',
+    width: '95%',
+    padding: 10,
+    marginTop: 20,
+    textAlign: 'center',
+    marginLeft: 20
+  }
+};
+
+let apiUri;
+
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      url: null
+    }
+  }
+
+  handleKeyPress(e) {
+    e.preventDefault();
+    this.setState({
+        [e.target.id]: e.target.value
+    })
+  }
+
   render() {
     const props = this.props;
     const {docs, uri} = props;
+    apiUri = uri;
 
     return (
       <MuiThemeProvider>
@@ -30,15 +61,25 @@ class Home extends React.Component {
             title="URL Shortener"
             showMenuIconButton={false}
           />
-          <div style={{margin: 20}}>
-            <Paper style={{padding: 10}} zDepth={1}>
+          
+            <Paper style={styles.paperUrl} zDepth={1}>
               <TextField 
                 hintText="Enter your original URL here" 
-                style={{width: '100%'}}
-                inputStyle={{width: '100%'}} 
+                style={{width: '80%', marginRight: 20, textAlign: 'left'}}
+                inputStyle={{width: '60%'}} 
                 underlineShow={true} 
+                onChange={(e) => this.handleKeyPress(e)}
+                id="url"
+              />
+              <RaisedButton
+                label="Shorten URL"
+                labelPosition="before"
+                primary={true}
+                icon={<FontIcon className="material-icons">link</FontIcon>}
+                onClick={(e) => props.shortenUrl(this.state.url)}
               />
             </Paper>
+          <div>
             <Paper
               style={{marginTop: 20}}
               rounded={false}
@@ -46,23 +87,23 @@ class Home extends React.Component {
             >
               <Toolbar>
                 <ToolbarGroup>
-                  <ToolbarTitle text="Recents URL's" />
+                  <ToolbarTitle text={`Recents URL's`} />
                 </ToolbarGroup>
                 <ToolbarGroup>
-                  <FontIcon className="material-icons" onClick={(e) => props.reloadUrl(uri)}>refresh</FontIcon>
+                  <FontIcon className="material-icons" onClick={props.reloadUrl}>refresh</FontIcon>
                 </ToolbarGroup>
               </Toolbar>
               <Table style={{marginTop: 20}} fixedHeader={true} selectable={false}>
                 <TableHeader displaySelectAll={false} adjustForCheckbox={false} selectable={false}>
                   <TableRow>
-                    <TableHeaderColumn style={{width: "20%"}}>Short URL</TableHeaderColumn>
+                    <TableHeaderColumn>Short URL</TableHeaderColumn>
                     <TableHeaderColumn>Original URL</TableHeaderColumn>
                   </TableRow>
                 </TableHeader>
                 <TableBody displayRowCheckbox={false}>
                   {docs.data.docs.map((doc, i) => {
                     return <TableRow key={"register-"+i}>
-                        <TableRowColumn style={{width: "20%"}}>{`http://lfum.es/${doc.hash}`}</TableRowColumn>
+                        <TableRowColumn>{`http://lfum.es/${doc.hash}`}</TableRowColumn>
                         <TableRowColumn>{doc.url}</TableRowColumn>
                       </TableRow>
                   })}
@@ -91,14 +132,38 @@ const mapStateToProps = (state) => {
   };
 };
 
+const reloadUrl = (dispatch) => {
+  return fetch(apiUri)
+  .then(response => response.json())
+  .then(json => {
+    dispatch(fetchRequestSuccess(json))
+  })
+}
+
+const createUrl = (dispatch, url) => {
+  return fetch(apiUri, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      url: url,
+    })
+  })
+  .then(response => response.json())
+  .then(json => {
+    reloadUrl(dispatch);
+    console.log(json);
+  })
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    reloadUrl(uri) {
-      return fetch(uri)
-      .then(response => response.json())
-      .then(json => {
-        dispatch(fetchRequestSuccess(json))
-      })
+    reloadUrl() {
+      return reloadUrl(dispatch)
+    },
+    shortenUrl(url) {
+      createUrl(dispatch, url)
     }
   };
 };
