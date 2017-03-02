@@ -11,7 +11,7 @@ import electrodeConfippet from "electrode-confippet";
 
 const Promise = require("bluebird");
 
-function createReduxStore(req, match) { // eslint-disable-line
+function initialStateHome(req, match) {
   return fetch(electrodeConfippet.config.application.uri)
   .then(response => response.json())
   .then(json => {
@@ -28,6 +28,18 @@ function createReduxStore(req, match) { // eslint-disable-line
   .catch(function(response) {
     console.error('ERRO', response);
   })
+}
+
+function createReduxStore(req, match) { // eslint-disable-line
+  if (req.url.pathname == "/") {
+    return initialStateHome(req, match);
+  }
+
+  const initState = {
+    uri: electrodeConfippet.config.application.uri
+  };
+  const store = createStore(rootReducer, initState);
+  return Promise.resolve(store);
 }
 
 //

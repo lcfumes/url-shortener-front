@@ -223,16 +223,6 @@ Home.propTypes = {
   uri: PropTypes.string
 };
 
-const mapStateToProps = (state) => {
-  return {
-      uri: state.uri,
-      docs: {
-        total: state.docs.total,
-        data: state.docs.data
-      }
-  };
-};
-
 const reloadUrl = (dispatch) => {
   return fetch(apiUri)
   .then(response => response.json())
@@ -258,6 +248,16 @@ const createUrl = (dispatch, url, setUrlShortened, callback) => {
     callback();
   })
 }
+
+const mapStateToProps = (state) => {
+  return {
+      uri: state.uri,
+      docs: {
+        total: state.docs.total,
+        data: state.docs.data
+      }
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
