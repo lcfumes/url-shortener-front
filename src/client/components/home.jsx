@@ -4,17 +4,20 @@ import {connect} from "react-redux";
 import Notifications from "react-notify-toast";
 /**/
 import {fetchPostsRequest, fetchRequestSuccess} from "../actions";
-const Promise = require("bluebird");
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-
 import FontIcon from 'material-ui/FontIcon';
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import AppBar from 'material-ui/AppBar';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
+import Dialog from 'material-ui/Dialog';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import Snackbar from 'material-ui/Snackbar';
+import Subheader from 'material-ui/Subheader';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -28,6 +31,13 @@ const styles = {
     marginTop: 20,
     textAlign: 'center',
     marginLeft: 20
+  },
+  paperDialog:{
+    flex: 1,
+    height: '100%',
+    width: '95%',
+    padding: 10,
+    marginTop: 20
   }
 };
 
@@ -38,10 +48,18 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
-      url: ""
+      url: "",
+      open: false,
+      urlShortened: "",
+      copied: false
     }
 
-    this.handleResetState = this.handleResetState.bind(this);
+    this.handleSetUrlShortened = this.handleSetUrlShortened.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleCopyUrl = this.handleCopyUrl.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
   handleKeyPress(e) {
@@ -51,10 +69,34 @@ class Home extends React.Component {
     })
   }
 
-  handleResetState() {
+  handleOpen() {
+    this.setState({open: true});
+  };
+
+  handleSetUrlShortened(url) {
     this.setState({
-      url: ""
+      urlShortened: url
+    })
+  }
+
+  handleCopyUrl() {
+    document.getElementById('url-shortened').focus()
+    document.getElementById('url-shortened').select()
+  }
+
+  handleClose() {
+    this.setState({
+      url: "",
+      open: false,
+      urlShortened: "",
+      copied: false
     });
+  };
+
+  handleRequestClose() {
+    this.setState({
+      copied: false
+    })
   }
 
   render() {
@@ -62,9 +104,59 @@ class Home extends React.Component {
     const {docs, uri} = props;
     apiUri = uri;
 
-    return (
+    const actions = [
+      <FlatButton
+        label="Close"
+        primary={true}
+        onTouchTap={this.handleClose}
+      />
+    ];
+
+    const dialogTitle = <Toolbar>
+      <ToolbarGroup>
+        <ToolbarTitle text={`URL Shortened`} />
+      </ToolbarGroup>
+    </Toolbar>
+
+    return (      
       <MuiThemeProvider>
         <div>
+          <Snackbar
+            open={this.state.copied}
+            message="Copied to Clipboard"
+            autoHideDuration={4000}
+            onRequestClose={this.handleRequestClose}
+            bodyStyle={{ backgroundColor: "rgb(255, 64, 129)", color: 'coral' }}
+          />
+          <Dialog
+            title={dialogTitle}
+            actions={actions}
+            modal={true}
+            open={this.state.open}
+          >
+            <p>
+              {`Don't forget to copy the shortened URL`}
+            </p>
+            <Paper style={styles.paperDialog} zDepth={1}>
+              <TextField 
+                value={`http://lfum.es/${this.state.urlShortened}`} 
+                style={{width: '80%', marginRight: 20, textAlign: 'left'}}
+                underlineShow={true} 
+                readOnly={true}
+                onClick={this.handleCopyUrl}
+                id="url-shortened"
+              />
+              <CopyToClipboard 
+                text={`http://lfum.es/${this.state.urlShortened}`}
+                onCopy={() => this.setState({copied: true})}>
+                <RaisedButton
+                  secondary={true}
+                  icon={<FontIcon className="material-icons">content_copy</FontIcon>}
+                  onClick={this.handleCopyUrl}
+                />
+              </CopyToClipboard>
+            </Paper>
+          </Dialog>
           <AppBar
             title="URL Shortener"
             showMenuIconButton={false}
@@ -85,7 +177,7 @@ class Home extends React.Component {
                 labelPosition="before"
                 primary={true}
                 icon={<FontIcon className="material-icons">link</FontIcon>}
-                onClick={(e) => props.shortenUrl(this.state.url, this.handleResetState)}
+                onClick={(e) => props.shortenUrl(this.state.url, this.handleSetUrlShortened, this.handleOpen)}
               />
             </Paper>
           <div>
@@ -149,7 +241,7 @@ const reloadUrl = (dispatch) => {
   })
 }
 
-const createUrl = (dispatch, url, callback) => {
+const createUrl = (dispatch, url, setUrlShortened, callback) => {
   return fetch(apiUri, {
     method: 'POST',
     headers: {
@@ -162,8 +254,8 @@ const createUrl = (dispatch, url, callback) => {
   .then(response => response.json())
   .then(json => {
     reloadUrl(dispatch);
+    setUrlShortened(json._embedded[0].hash)
     callback();
-    console.log(json);
   })
 }
 
@@ -172,8 +264,8 @@ const mapDispatchToProps = (dispatch) => {
     reloadUrl() {
       return reloadUrl(dispatch)
     },
-    shortenUrl(url, callback) {
-      createUrl(dispatch, url, callback)
+    shortenUrl(url, setUrlShortened, callback) {
+      createUrl(dispatch, url, setUrlShortened, callback)
     }
   };
 };
