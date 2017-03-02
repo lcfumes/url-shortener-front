@@ -232,6 +232,9 @@ const reloadUrl = (dispatch) => {
 }
 
 const createUrl = (dispatch, url, setUrlShortened, callback) => {
+  if (url.substr(0, 4) != 'http') {
+    url = `http://${url}`
+  }
   return fetch(apiUri, {
     method: 'POST',
     headers: {
