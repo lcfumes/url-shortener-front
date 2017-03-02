@@ -9,3 +9,19 @@ html, body {
 	font: inherit;
 	vertical-align: baseline;
 }
+
+a:active, a:hover {
+    text-decoration: underline;
+}
+a:active, a:hover {
+    outline: 0;
+}
+a {
+    color: #4078c0;
+    text-decoration: none;
+} a {
+    background-color: transparent;
+}
+a:hover {
+    text-decoration: underline;
+}

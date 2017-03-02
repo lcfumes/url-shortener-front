@@ -204,7 +204,9 @@ class Home extends React.Component {
                 <TableBody displayRowCheckbox={false}>
                   {docs.data.docs.map((doc, i) => {
                     return <TableRow key={"register-"+i}>
-                        <TableRowColumn>{`http://lfum.es/${doc.hash}`}</TableRowColumn>
+                        <TableRowColumn>
+                          <a href={`http://lfum.es/${doc.hash}`} target="_blank">{`http://lfum.es/${doc.hash}`}</a>
+                        </TableRowColumn>
                         <TableRowColumn>{doc.url}</TableRowColumn>
                       </TableRow>
                   })}
