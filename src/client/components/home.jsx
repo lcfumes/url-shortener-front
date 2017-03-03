@@ -20,6 +20,21 @@ import Snackbar from 'material-ui/Snackbar';
 import Subheader from 'material-ui/Subheader';
 import Pagination from './global/pagination';
 
+import ReactGA from 'react-ga';
+if (typeof window !== 'undefined') {
+  ReactGA.initialize('UA-92958744-1', {
+    debug: true,
+    titleCase: false
+  });
+}
+
+const logPageView = () => {
+  if (typeof window !== 'undefined') {
+    ReactGA.set({ page: window.location.pathname });
+    ReactGA.pageview(window.location.pathname);
+  }
+}
+
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
@@ -63,6 +78,10 @@ class Home extends React.Component {
     this.handleCopyUrl = this.handleCopyUrl.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handlePagination = this.handlePagination.bind(this);
+  }
+
+  componentWillUnmount() {
+    logPageView();
   }
 
   handleKeyPress(e) {
