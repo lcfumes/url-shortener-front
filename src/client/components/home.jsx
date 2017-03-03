@@ -23,7 +23,7 @@ import Pagination from './global/pagination';
 import ReactGA from 'react-ga';
 if (typeof window !== 'undefined') {
   ReactGA.initialize('UA-92958744-1', {
-    debug: true,
+    debug: false,
     titleCase: false
   });
 }
