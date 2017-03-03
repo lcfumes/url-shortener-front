@@ -19,7 +19,8 @@ function initialStateHome(req, match) {
       uri: electrodeConfippet.config.application.uri,
       docs: {
         total: {value: json.total},
-        data: {docs: json._embedded}
+        data: {docs: json._embedded},
+        all: {value: json.all}
       }
     };
     const store = createStore(rootReducer, initState);

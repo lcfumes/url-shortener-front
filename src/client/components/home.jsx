@@ -18,6 +18,7 @@ import Dialog from 'material-ui/Dialog';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import Snackbar from 'material-ui/Snackbar';
 import Subheader from 'material-ui/Subheader';
+import Pagination from './global/pagination';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -49,6 +50,7 @@ class Home extends React.Component {
 
     this.state = {
       url: "",
+      page: 1,
       open: false,
       urlShortened: "",
       copied: false
@@ -60,6 +62,7 @@ class Home extends React.Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleCopyUrl = this.handleCopyUrl.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.handlePagination = this.handlePagination.bind(this);
   }
 
   handleKeyPress(e) {
@@ -97,6 +100,12 @@ class Home extends React.Component {
     this.setState({
       copied: false
     })
+  }
+
+  handlePagination(page) {
+    this.setState({
+      page: page
+    }, (e) => this.props.getUrls(this.state.page))
   }
 
   render() {
@@ -191,7 +200,7 @@ class Home extends React.Component {
                   <ToolbarTitle text={`Recents URL's`} />
                 </ToolbarGroup>
                 <ToolbarGroup>
-                  <FontIcon className="material-icons" onClick={props.reloadUrl}>refresh</FontIcon>
+                  <FontIcon className="material-icons" onClick={(e) => props.getUrls(this.state.page)}>refresh</FontIcon>
                 </ToolbarGroup>
               </Toolbar>
               <Table style={{marginTop: 20}} fixedHeader={true} selectable={false}>
@@ -210,8 +219,21 @@ class Home extends React.Component {
                         <TableRowColumn>{doc.url}</TableRowColumn>
                       </TableRow>
                   })}
+                  <TableRow key={"register-total"}>
+                    <TableRowColumn>
+                    </TableRowColumn>
+                    <TableRowColumn style={{textAlign: 'right'}}>
+                      <Pagination
+                        total={Math.round(docs.all.value / 10)}
+                        current={this.state.page}
+                        display={10}
+                        onChange={this.handlePagination}
+                      />
+                    </TableRowColumn>
+                  </TableRow>
                 </TableBody>
               </Table>
+              
             </Paper>
           </div>
         </div>
@@ -225,8 +247,12 @@ Home.propTypes = {
   uri: PropTypes.string
 };
 
-const reloadUrl = (dispatch) => {
-  return fetch(apiUri)
+const getUrls = (offset, dispatch) => {
+  let page = 0;
+  if (offset) {
+    page = offset - 1;
+  }
+  return fetch(`${apiUri}?page=${page}`)
   .then(response => response.json())
   .then(json => {
     dispatch(fetchRequestSuccess(json))
@@ -248,7 +274,7 @@ const createUrl = (dispatch, url, setUrlShortened, callback) => {
   })
   .then(response => response.json())
   .then(json => {
-    reloadUrl(dispatch);
+    getUrls(0, dispatch);
     setUrlShortened(json._embedded[0].hash)
     callback();
   })
@@ -259,6 +285,7 @@ const mapStateToProps = (state) => {
       uri: state.uri,
       docs: {
         total: state.docs.total,
+        all: state.docs.all,
         data: state.docs.data
       }
   };
@@ -266,8 +293,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    reloadUrl() {
-      return reloadUrl(dispatch)
+    getUrls(page) {
+      return getUrls(page, dispatch)
     },
     shortenUrl(url, setUrlShortened, callback) {
       createUrl(dispatch, url, setUrlShortened, callback)
