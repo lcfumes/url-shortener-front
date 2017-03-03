@@ -80,7 +80,7 @@ class Home extends React.Component {
     this.handlePagination = this.handlePagination.bind(this);
   }
 
-  componentWillUnmount() {
+  componentWillMount() {
     logPageView();
   }
 
