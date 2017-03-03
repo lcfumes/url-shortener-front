@@ -19,8 +19,8 @@ function initialStateHome(req, match) {
       uri: electrodeConfippet.config.application.uri,
       docs: {
         total: {value: json.total},
-        data: {docs: json._embedded},
-        all: {value: json.all}
+        all: {value: json.all},
+        data: {docs: json._embedded}
       }
     };
     const store = createStore(rootReducer, initState);
@@ -37,7 +37,12 @@ function createReduxStore(req, match) { // eslint-disable-line
   }
 
   const initState = {
-    uri: electrodeConfippet.config.application.uri
+    uri: electrodeConfippet.config.application.uri,
+    docs: {
+      total: {value: 0},
+      all: {value: 0},
+      data: {docs: []}
+    }
   };
   const store = createStore(rootReducer, initState);
   return Promise.resolve(store);
