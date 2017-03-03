@@ -130,6 +130,7 @@ class Home extends React.Component {
     return (      
       <MuiThemeProvider>
         <div>
+          <Notifications />
           <Snackbar
             open={this.state.copied}
             message="Copied to Clipboard"
