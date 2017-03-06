@@ -14,8 +14,6 @@ const support = require("electrode-archetype-react-app/support");
 
 const favicons = require("favicons");
 
-console.log(favicons)
-
 require.extensions[".css"] = () => {
   return;
 };
