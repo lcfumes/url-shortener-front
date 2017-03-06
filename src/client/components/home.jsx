@@ -189,6 +189,7 @@ class Home extends React.Component {
           <AppBar
             title="URL Shortener"
             showMenuIconButton={false}
+            iconClassNameRight="muidocs-icon-custom-github"
           />
           
             <Paper style={styles.paperUrl} zDepth={1}>
