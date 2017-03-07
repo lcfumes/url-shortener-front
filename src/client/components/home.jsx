@@ -19,6 +19,9 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import Snackbar from 'material-ui/Snackbar';
 import Subheader from 'material-ui/Subheader';
 import Pagination from './global/pagination';
+import validUrl from 'valid-url';
+
+import githubImg from '../images/github/GitHub-Mark-Light-32px.png';
 
 import ReactGA from 'react-ga';
 if (typeof window !== 'undefined') {
@@ -68,6 +71,7 @@ class Home extends React.Component {
       page: 1,
       open: false,
       urlShortened: "",
+      invalidUrl: false,
       copied: false
     }
 
@@ -78,6 +82,7 @@ class Home extends React.Component {
     this.handleCopyUrl = this.handleCopyUrl.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
     this.handlePagination = this.handlePagination.bind(this);
+    this.handleUrlInvalid = this.handleUrlInvalid.bind(this);
   }
 
   componentWillMount() {
@@ -87,6 +92,7 @@ class Home extends React.Component {
   handleKeyPress(e) {
     e.preventDefault();
     this.setState({
+        invalidUrl: false,
         [e.target.id]: e.target.value
     })
   }
@@ -94,6 +100,10 @@ class Home extends React.Component {
   handleOpen() {
     this.setState({open: true});
   };
+
+  handleUrlInvalid() {
+    this.setState({invalidUrl: true})
+  }
 
   handleSetUrlShortened(url) {
     this.setState({
@@ -146,6 +156,10 @@ class Home extends React.Component {
       </ToolbarGroup>
     </Toolbar>
 
+    const repositoryLink = <a href="https://github.com/lcfumes/url-shortener-front" target="_blank">
+      <img src={githubImg} style={{width:30, margin: 10}} />
+    </a>
+
     return (      
       <MuiThemeProvider>
         <div>
@@ -189,7 +203,7 @@ class Home extends React.Component {
           <AppBar
             title="URL Shortener"
             showMenuIconButton={false}
-            iconClassNameRight="muidocs-icon-custom-github"
+            iconElementRight={repositoryLink}
           />
           
             <Paper style={styles.paperUrl} zDepth={1}>
@@ -201,13 +215,14 @@ class Home extends React.Component {
                 onChange={(e) => this.handleKeyPress(e)}
                 id="url"
                 value={this.state.url}
+                errorText={this.state.invalidUrl && 'Does not appear to be a valid URL'}
               />
               <RaisedButton
                 label="Shorten URL"
                 labelPosition="before"
                 primary={true}
                 icon={<FontIcon className="material-icons">link</FontIcon>}
-                onClick={(e) => props.shortenUrl(this.state.url, this.handleSetUrlShortened, this.handleOpen)}
+                onClick={(e) => props.shortenUrl(this.state.url, this.handleSetUrlShortened, this.handleOpen, this.handleUrlInvalid)}
               />
             </Paper>
           <div>
@@ -280,25 +295,29 @@ const getUrls = (offset, dispatch) => {
   })
 }
 
-const createUrl = (dispatch, url, setUrlShortened, callback) => {
-  if (url.substr(0, 4) != 'http') {
-    url = `http://${url}`
-  }
-  return fetch(apiUri, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      url: url,
+const createUrl = (dispatch, url, setUrlShortened, callback, error) => {
+  if (!validUrl.isUri(suspect)){
+    error();
+  } else {
+    if (url.substr(0, 4) != 'http') {
+      url = `http://${url}`
+    }
+    return fetch(apiUri, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        url: url,
+      })
     })
-  })
-  .then(response => response.json())
-  .then(json => {
-    getUrls(0, dispatch);
-    setUrlShortened(json._embedded[0].hash)
-    callback();
-  })
+    .then(response => response.json())
+    .then(json => {
+      getUrls(0, dispatch);
+      setUrlShortened(json._embedded[0].hash)
+      callback();
+    });
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -317,8 +336,8 @@ const mapDispatchToProps = (dispatch) => {
     getUrls(page) {
       return getUrls(page, dispatch)
     },
-    shortenUrl(url, setUrlShortened, callback) {
-      createUrl(dispatch, url, setUrlShortened, callback)
+    shortenUrl(url, setUrlShortened, callback, error) {
+      createUrl(dispatch, url, setUrlShortened, callback, error)
     }
   };
 };
