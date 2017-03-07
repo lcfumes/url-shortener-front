@@ -296,7 +296,7 @@ const getUrls = (offset, dispatch) => {
 }
 
 const createUrl = (dispatch, url, setUrlShortened, callback, error) => {
-  if (!validUrl.isUri(suspect)){
+  if (!validUrl.isUri(url)){
     error();
   } else {
     if (url.substr(0, 4) != 'http') {
