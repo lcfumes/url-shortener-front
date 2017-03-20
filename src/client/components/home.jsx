@@ -20,6 +20,12 @@ import Snackbar from 'material-ui/Snackbar';
 import Subheader from 'material-ui/Subheader';
 import Pagination from './global/pagination';
 
+import Helmet from "react-helmet";
+
+import image from "../images/pedalize/pedalize.png";
+
+console.log(image);
+
 import ReactGA from 'react-ga';
 if (typeof window !== 'undefined') {
   ReactGA.initialize('UA-92958744-1', {
@@ -149,6 +155,18 @@ class Home extends React.Component {
     return (      
       <MuiThemeProvider>
         <div>
+          <Helmet
+              htmlAttributes={{lang: "en", amp: undefined}} // amp takes no value
+              title="lfum-es - Url Shortener"
+              titleTemplate="lfum.es - %s"
+              defaultTitle="lfum.es - Url Shortener"
+              titleAttributes={{itemprop: "name", lang: "en"}}
+              base={{target: "_blank", href: "http://lfum.es"}}
+              meta={[
+                  {name: "description", content: "URL Shortener - Open Source code on GitHub"},
+                  {property: "og:type", content: "article"}
+              ]}
+          />
           <Notifications />
           <Snackbar
             open={this.state.copied}
