@@ -1,27 +1,16 @@
-# url-shortener-front [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> Url Shortener Front
+This project is a front end to API [url-shortener-node](https://github.com/lcfumes/url-shortener-node)
 
-## Installation
+You can see this project working in [http://lfum.es](http://lfum.es)
 
-```sh
-$ npm install --save url-shortener-front
+## Developer ##
+```
+$ npm install
+$ gulp dev
 ```
 
-## Usage
-
-```js
-var urlShortenerFront = require('url-shortener-front');
-
-urlShortenerFront('Rainbow');
+## Production ##
 ```
-## License
-
-Apache-2.0 © [Luiz Fumes](http://fumes.com.br)
-
-
-[npm-image]: https://badge.fury.io/js/url-shortener-front.svg
-[npm-url]: https://npmjs.org/package/url-shortener-front
-[travis-image]: https://travis-ci.org/lcfumes/url-shortener-front.svg?branch=master
-[travis-url]: https://travis-ci.org/lcfumes/url-shortener-front
-[daviddm-image]: https://david-dm.org/lcfumes/url-shortener-front.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/lcfumes/url-shortener-front
+$ npm install
+$ gulp build
+$ gulp server
+```
