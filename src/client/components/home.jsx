@@ -180,7 +180,7 @@ class Home extends React.Component {
               titleTemplate="lfum.es - %s"
               defaultTitle="lfum.es - Url Shortener"
               titleAttributes={{itemprop: "name", lang: "en"}}
-              base={{target: "_blank", href: "http://lfum.es"}}
+              base={{target: "_blank", href: "https://lfum.es"}}
               meta={[
                   {name: "description", content: "URL Shortener - Open Source code on GitHub"},
                   {property: "og:type", content: "article"}
@@ -205,7 +205,7 @@ class Home extends React.Component {
             </p>
             <Paper style={styles.paperDialog} zDepth={1}>
               <TextField 
-                value={`http://lfum.es/${this.state.urlShortened}`} 
+                value={`https://lfum.es/${this.state.urlShortened}`} 
                 style={{width: '80%', marginRight: 20, textAlign: 'left'}}
                 underlineShow={true} 
                 readOnly={true}
@@ -213,7 +213,7 @@ class Home extends React.Component {
                 id="url-shortened"
               />
               <CopyToClipboard 
-                text={`http://lfum.es/${this.state.urlShortened}`}
+                text={`https://lfum.es/${this.state.urlShortened}`}
                 onCopy={() => this.setState({copied: true})}>
                 <RaisedButton
                   secondary={true}
@@ -273,7 +273,7 @@ class Home extends React.Component {
                   {this.state.docs.data.docs.map((doc, i) => {
                     return <TableRow key={"register-"+i}>
                         <TableRowColumn>
-                          <a href={`http://lfum.es/${doc.hash}`} target="_blank">{`http://lfum.es/${doc.hash}`}</a>
+                          <a href={`https://lfum.es/${doc.hash}`} target="_blank">{`https://lfum.es/${doc.hash}`}</a>
                         </TableRowColumn>
                         <TableRowColumn>{doc.url}</TableRowColumn>
                       </TableRow>
