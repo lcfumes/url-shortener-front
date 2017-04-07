@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 /**/
 import Notifications from "react-notify-toast";
 /**/
-import { updateDocs, updatePage } from '../actions/docs';
+import { updateDocs, updatePage, createUrl, updateHash} from '../actions/docs';
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import FontIcon from 'material-ui/FontIcon';
@@ -72,20 +72,19 @@ class Home extends React.Component {
       url: "",
       page: props.page,
       open: false,
-      urlShortened: "",
+      urlShortened: this.props.hash,
       invalidUrl: false,
       copied: false,
       docs: props.docs
     }
 
-    this.handleSetUrlShortened = this.handleSetUrlShortened.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleCopyUrl = this.handleCopyUrl.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
-    this.handlePagination = this.handlePagination.bind(this);
     this.handleUrlInvalid = this.handleUrlInvalid.bind(this);
+    this.shortenUrl = this.shortenUrl.bind(this);
   }
 
   componentWillMount() {
@@ -95,8 +94,24 @@ class Home extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       docs: nextProps.docs,
-      page: nextProps.page
+      page: nextProps.page,
+      urlShortened: nextProps.hash,
+      open: (nextProps.hash !== '') ? true : false
     })
+  }
+
+  shortenUrl() {
+    let url = this.state.url;
+    if (!validUrl.isUri(url)){
+      this.setState({
+        invalidUrl: true
+      })
+    } else {
+      if (url.substr(0, 4) != 'http') {
+        url = `http://${url}`
+      }
+      this.props.createUrl(url)
+    }
   }
 
   handleKeyPress(e) {
@@ -115,12 +130,6 @@ class Home extends React.Component {
     this.setState({invalidUrl: true})
   }
 
-  handleSetUrlShortened(url) {
-    this.setState({
-      urlShortened: url
-    })
-  }
-
   handleCopyUrl() {
     document.getElementById('url-shortened').focus()
     document.getElementById('url-shortened').select()
@@ -132,6 +141,8 @@ class Home extends React.Component {
       open: false,
       urlShortened: "",
       copied: false
+    }, () => {
+      this.props.updateHash('')
     });
   };
 
@@ -139,10 +150,6 @@ class Home extends React.Component {
     this.setState({
       copied: false
     })
-  }
-
-  handlePagination(page) {
-    this.props.updatePage(page)
   }
 
   render() {
@@ -238,7 +245,7 @@ class Home extends React.Component {
                 labelPosition="before"
                 primary={true}
                 icon={<FontIcon className="material-icons">link</FontIcon>}
-                onClick={(e) => props.shortenUrl(this.state.url, this.handleSetUrlShortened, this.handleOpen, this.handleUrlInvalid)}
+                onClick={(e) => this.shortenUrl()}
               />
             </Paper>
           <div>
@@ -252,7 +259,7 @@ class Home extends React.Component {
                   <ToolbarTitle text={`Recents URL's`} />
                 </ToolbarGroup>
                 <ToolbarGroup>
-                  <FontIcon className="material-icons" onClick={(e) => props.getUrls(this.state.page)}>refresh</FontIcon>
+                  <FontIcon className="material-icons" onClick={(e) => this.props.updateDocs()}>refresh</FontIcon>
                 </ToolbarGroup>
               </Toolbar>
               <Table style={{marginTop: 20}} fixedHeader={true} selectable={false}>
@@ -279,7 +286,7 @@ class Home extends React.Component {
                         total={Math.round(this.state.docs.all.value / 10)}
                         current={this.state.page}
                         display={10}
-                        onChange={this.handlePagination}
+                        onChange={this.props.updatePage}
                       />
                     </TableRowColumn>
                   </TableRow>
@@ -299,36 +306,12 @@ Home.propTypes = {
   // uri: PropTypes.string
 };
 
-// const createUrl = (dispatch, url, setUrlShortened, callback, error) => {
-//   if (!validUrl.isUri(url)){
-//     error();
-//   } else {
-//     if (url.substr(0, 4) != 'http') {
-//       url = `http://${url}`
-//     }
-//     return fetch(apiUri, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify({
-//         url: url,
-//       })
-//     })
-//     .then(response => response.json())
-//     .then(json => {
-//       getUrls(0, dispatch);
-//       setUrlShortened(json._embedded[0].hash)
-//       callback();
-//     });
-//   }
-// }
-
 const mapStateToProps = (state) => {
   return {
     uri: state.appReducer.uri,
     docs: state.docsReducer.docs,
-    page: state.paginationReducer.page
+    page: state.paginationReducer.page,
+    hash: state.hashCreatedReducer.hash
   };
 };
 
@@ -339,6 +322,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     updatePage: (page) => {
       dispatch(updatePage(page))
+    },
+    createUrl: (url) => {
+      dispatch(createUrl(url))
+    },
+    updateHash: (hash) => {
+      dispatch(updateHash(hash))
     }
   }
 };

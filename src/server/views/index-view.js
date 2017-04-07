@@ -56,7 +56,7 @@ function createReduxStore(req, match) { // eslint-disable-line
 
 module.exports = (req) => {
 
-  let page = (req.query.page !== undefined) ? req.query.page : 0;
+  let page = (req.query.page !== undefined) ? req.query.page : 1;
 
   initialState = {
     appReducer: {
@@ -71,6 +71,9 @@ module.exports = (req) => {
         all: { value: 0 },
         data: { docs: [] }
       }
+    },
+    hashCreatedReducer: {
+      hash: ''
     }
   }
   const app = req.server && req.server.app || req.app;

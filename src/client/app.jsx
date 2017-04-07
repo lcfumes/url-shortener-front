@@ -6,8 +6,11 @@ import React from "react";
 import {render} from "react-dom";
 import {routes} from "./routes";
 import {Router, browserHistory} from "react-router";
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
 import {Provider} from "react-redux";
+import thunkMiddleware from "redux-thunk";
+import { createLogger } from "redux-logger";
+
 /*  */
 import {notify} from "react-notify-toast";
 /*  */
@@ -30,10 +33,11 @@ require.ensure(["./sw-registration"], (require) => {
 /**/
 window.webappStart = () => {
   const initialState = window.__PRELOADED_STATE__;
-  const store = createStore(rootReducer, initialState);
+  const loggerMiddleware = createLogger()
+  const store = createStore(rootReducer, initialState, applyMiddleware(thunkMiddleware, loggerMiddleware));
   render(
     <Provider store={store}>
-      <Router history={browserHistory}>{routes}</Router>
+      <Router history={browserHistory} store={store}>{routes}</Router>
     </Provider>,
     document.querySelector(".js-content")
   );

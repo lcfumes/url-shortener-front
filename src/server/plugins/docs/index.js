@@ -17,6 +17,26 @@ exports.register = (server, options, next) => {
     }
   })
 
+  server.route({
+    method: 'POST',
+    path: '/api/docs/',
+    handler: (request, reply) => {
+      fetch(`http://api.lfum.es`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          url: request.payload.url
+        })
+      })
+      .then(response => response.json())
+      .then(response => {
+        reply(response)
+      })
+    }
+  })
+
   next()
 
 };
