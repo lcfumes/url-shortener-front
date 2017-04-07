@@ -22,6 +22,9 @@ module.exports = {
     "server/plugins/pwa": {
       "module": "./{{env.APP_SRC_DIR}}/server/plugins/pwa"
     },
+    "server/plugins/docs": {
+      "module": "./{{env.APP_SRC_DIR}}/server/plugins/docs"
+    },
     "webapp": {
       "module": "electrode-react-webapp/lib/hapi",
       "options": {

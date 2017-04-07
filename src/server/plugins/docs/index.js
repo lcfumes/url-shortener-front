@@ -8,7 +8,7 @@ exports.register = (server, options, next) => {
     method: 'GET',
     path: '/api/docs',
     handler: (request, reply) => {
-      fetch(`http://api.lfum.es?page=${page}`)
+      fetch(`http://api.lfum.es?page=${request.query.page}`)
       .then(response => response.json())
       .then(json => {
         reply(fetchRequestSuccess(json))
