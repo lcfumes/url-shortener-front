@@ -1,6 +1,6 @@
 {
 	"application": {
-		"uri": "http://api.lfum.es/",
+		"uri": "https://lfum.es/api/docs/",
 		"total": "total"
 	}
 }
