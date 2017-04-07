@@ -8,22 +8,26 @@ import {createStore} from "redux";
 import rootReducer from "../../client/reducers";
 import fetch from 'isomorphic-fetch'
 import electrodeConfippet from "electrode-confippet";
+import _ from "lodash";
 
 const Promise = require("bluebird");
+let initialState;
 
-function initialStateHome(req, match) {
-  return fetch(electrodeConfippet.config.application.uri)
+function createStoreCallback() {
+  return fetch(`${electrodeConfippet.config.application.uri}?page=${initialState.paginationReducer.page}`)
   .then(response => response.json())
-  .then(json => {
-    const initState = {
-      uri: electrodeConfippet.config.application.uri,
-      docs: {
-        total: {value: json.total},
-        all: {value: json.all},
-        data: {docs: json._embedded}
+  .then(response => {
+    _.merge(initialState, {
+      docsReducer: {
+        docs: {
+          total: { value: response.total },
+          all: { value: response.all },
+          data: { docs: response._embedded }
+        }
       }
-    };
-    const store = createStore(rootReducer, initState);
+    })
+  
+    const store = createStore(rootReducer, initialState);
     return Promise.resolve(store);
   })
   .catch(function(response) {
@@ -33,18 +37,10 @@ function initialStateHome(req, match) {
 
 function createReduxStore(req, match) { // eslint-disable-line
   if (req.url.pathname == "/") {
-    return initialStateHome(req, match);
+    return createStoreCallback();
   }
 
-  const initState = {
-    uri: electrodeConfippet.config.application.uri,
-    docs: {
-      total: {value: 0},
-      all: {value: 0},
-      data: {docs: []}
-    }
-  };
-  const store = createStore(rootReducer, initState);
+  const store = createStore(rootReducer, initialState);
   return Promise.resolve(store);
 }
 
@@ -59,6 +55,24 @@ function createReduxStore(req, match) { // eslint-disable-line
 //
 
 module.exports = (req) => {
+
+  let page = (req.query.page !== undefined) ? req.query.page : 0;
+
+  initialState = {
+    appReducer: {
+      uri: electrodeConfippet.config.application.uri
+    },
+    paginationReducer: {
+      page: page
+    },
+    docsReducer: {
+      docs: {
+        total: { value: 0 },
+        all: { value: 0 },
+        data: { docs: [] }
+      }
+    }
+  }
   const app = req.server && req.server.app || req.app;
   if (!app.routesEngine) {
     app.routesEngine = new ReduxRouterEngine({routes, createReduxStore});

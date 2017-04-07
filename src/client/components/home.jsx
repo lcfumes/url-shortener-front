@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 /**/
 import Notifications from "react-notify-toast";
 /**/
-import {fetchPostsRequest, fetchRequestSuccess} from "../actions";
+import { updateDocs, updatePage } from '../actions/docs';
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import FontIcon from 'material-ui/FontIcon';
@@ -24,10 +24,6 @@ import validUrl from 'valid-url';
 import githubImg from '../images/github/GitHub-Mark-Light-32px.png';
 
 import Helmet from "react-helmet";
-
-import image from "../images/pedalize/pedalize.png";
-
-console.log(image);
 
 import ReactGA from 'react-ga';
 if (typeof window !== 'undefined') {
@@ -74,11 +70,12 @@ class Home extends React.Component {
 
     this.state = {
       url: "",
-      page: 1,
+      page: props.page,
       open: false,
       urlShortened: "",
       invalidUrl: false,
-      copied: false
+      copied: false,
+      docs: props.docs
     }
 
     this.handleSetUrlShortened = this.handleSetUrlShortened.bind(this);
@@ -93,6 +90,13 @@ class Home extends React.Component {
 
   componentWillMount() {
     logPageView();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      docs: nextProps.docs,
+      page: nextProps.page
+    })
   }
 
   handleKeyPress(e) {
@@ -138,16 +142,10 @@ class Home extends React.Component {
   }
 
   handlePagination(page) {
-    this.setState({
-      page: page
-    }, (e) => this.props.getUrls(this.state.page))
+    this.props.updatePage(page)
   }
 
   render() {
-    const props = this.props;
-    const {docs, uri} = props;
-    apiUri = uri;
-
     const actions = [
       <FlatButton
         label="Close"
@@ -265,7 +263,7 @@ class Home extends React.Component {
                   </TableRow>
                 </TableHeader>
                 <TableBody displayRowCheckbox={false}>
-                  {docs.data.docs.map((doc, i) => {
+                  {this.state.docs.data.docs.map((doc, i) => {
                     return <TableRow key={"register-"+i}>
                         <TableRowColumn>
                           <a href={`http://lfum.es/${doc.hash}`} target="_blank">{`http://lfum.es/${doc.hash}`}</a>
@@ -278,7 +276,7 @@ class Home extends React.Component {
                     </TableRowColumn>
                     <TableRowColumn style={{textAlign: 'right'}}>
                       <Pagination
-                        total={Math.round(docs.all.value / 10)}
+                        total={Math.round(this.state.docs.all.value / 10)}
                         current={this.state.page}
                         display={10}
                         onChange={this.handlePagination}
@@ -297,67 +295,52 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-  docs: PropTypes.object.isRequired,
-  uri: PropTypes.string
+  // docs: PropTypes.object.isRequired,
+  // uri: PropTypes.string
 };
 
-const getUrls = (offset, dispatch) => {
-  let page = 0;
-  if (offset) {
-    page = offset - 1;
-  }
-  return fetch(`${apiUri}?page=${page}`)
-  .then(response => response.json())
-  .then(json => {
-    dispatch(fetchRequestSuccess(json))
-  })
-}
-
-const createUrl = (dispatch, url, setUrlShortened, callback, error) => {
-  if (!validUrl.isUri(url)){
-    error();
-  } else {
-    if (url.substr(0, 4) != 'http') {
-      url = `http://${url}`
-    }
-    return fetch(apiUri, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        url: url,
-      })
-    })
-    .then(response => response.json())
-    .then(json => {
-      getUrls(0, dispatch);
-      setUrlShortened(json._embedded[0].hash)
-      callback();
-    });
-  }
-}
+// const createUrl = (dispatch, url, setUrlShortened, callback, error) => {
+//   if (!validUrl.isUri(url)){
+//     error();
+//   } else {
+//     if (url.substr(0, 4) != 'http') {
+//       url = `http://${url}`
+//     }
+//     return fetch(apiUri, {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({
+//         url: url,
+//       })
+//     })
+//     .then(response => response.json())
+//     .then(json => {
+//       getUrls(0, dispatch);
+//       setUrlShortened(json._embedded[0].hash)
+//       callback();
+//     });
+//   }
+// }
 
 const mapStateToProps = (state) => {
   return {
-      uri: state.uri,
-      docs: {
-        total: state.docs.total,
-        all: state.docs.all,
-        data: state.docs.data
-      }
+    uri: state.appReducer.uri,
+    docs: state.docsReducer.docs,
+    page: state.paginationReducer.page
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getUrls(page) {
-      return getUrls(page, dispatch)
+    updateDocs: () => {
+      dispatch(updateDocs())
     },
-    shortenUrl(url, setUrlShortened, callback, error) {
-      createUrl(dispatch, url, setUrlShortened, callback, error)
+    updatePage: (page) => {
+      dispatch(updatePage(page))
     }
-  };
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
