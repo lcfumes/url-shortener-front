@@ -6,7 +6,7 @@ import React from "react";
 import {render} from "react-dom";
 import {routes} from "./routes";
 import {Router, browserHistory} from "react-router";
-import {createStore, applyMiddleware} from "redux";
+import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 import thunkMiddleware from "redux-thunk";
 import { createLogger } from "redux-logger";
@@ -18,6 +18,8 @@ import "./styles/base.css";
 import rootReducer from "./reducers";
 
 import injectTapEventPlugin from "react-tap-event-plugin";
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 window.webappStart = () => {
   injectTapEventPlugin(); // https://github.com/callemall/material-ui/issues/4670
@@ -34,7 +36,7 @@ require.ensure(["./sw-registration"], (require) => {
 window.webappStart = () => {
   const initialState = window.__PRELOADED_STATE__;
   const loggerMiddleware = createLogger()
-  const store = createStore(rootReducer, initialState, applyMiddleware(thunkMiddleware, loggerMiddleware));
+  const store = createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(thunkMiddleware, loggerMiddleware)));
   render(
     <Provider store={store}>
       <Router history={browserHistory} store={store}>{routes}</Router>

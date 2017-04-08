@@ -4,13 +4,14 @@
 
 import ReduxRouterEngine from "electrode-redux-router-engine";
 import {routes} from "../../client/routes";
-import {createStore} from "redux";
+import { createStore } from "redux";
 import rootReducer from "../../client/reducers";
 import fetch from 'isomorphic-fetch'
 import electrodeConfippet from "electrode-confippet";
 import _ from "lodash";
 
 const Promise = require("bluebird");
+
 let initialState;
 
 function createStoreCallback() {
@@ -74,6 +75,9 @@ module.exports = (req) => {
     },
     hashCreatedReducer: {
       hash: ''
+    },
+    loadingReducer: {
+      loading: false
     }
   }
   const app = req.server && req.server.app || req.app;

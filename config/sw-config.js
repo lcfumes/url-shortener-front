@@ -8,9 +8,9 @@ module.exports = {
     staticFileGlobs: ['dist/**/*']
   },
   manifest: {
-    background: "#FFFFFF",
+    background: "#00BCD4",
     title: "URL Shortener",
     short_name: "lfum.es",
-    theme_color: "#FFFFFF"
+    theme_color: "#00BCD4"
   }
 };

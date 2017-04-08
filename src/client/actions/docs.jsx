@@ -1,5 +1,7 @@
 import _ from "lodash";
 
+import { updateLoading } from './loading'
+
 export const storeDocs = (response) => {
   return {
     type: 'FETCH_PRODUCTS',
@@ -27,10 +29,12 @@ export const updateHashCreated = (hash) => {
 
 export function fetchDocs(state) {
   return (dispatch, getState) => {
+    dispatch(updateLoading(true))
     fetch(`${state.appReducer.uri}?page=${state.paginationReducer.page}`)
     .then(response => response.json())
     .then(response => {
       dispatch(storeDocs(response))
+      dispatch(updateLoading(false))
     })
   }
 }

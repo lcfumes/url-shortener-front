@@ -2,8 +2,10 @@ import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 /**/
 import Notifications from "react-notify-toast";
+import Helmet from "react-helmet";
+
 /**/
-import { updateDocs, updatePage, createUrl, updateHash} from '../actions/docs';
+import { createUrl, updateHash} from '../actions/docs';
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import FontIcon from 'material-ui/FontIcon';
@@ -18,12 +20,12 @@ import Dialog from 'material-ui/Dialog';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import Snackbar from 'material-ui/Snackbar';
 import Subheader from 'material-ui/Subheader';
-import Pagination from './global/pagination';
+
+import ListUrls from './listurls';
+
 import validUrl from 'valid-url';
 
 import githubImg from '../images/github/GitHub-Mark-Light-32px.png';
-
-import Helmet from "react-helmet";
 
 import ReactGA from 'react-ga';
 if (typeof window !== 'undefined') {
@@ -70,7 +72,6 @@ class Home extends React.Component {
 
     this.state = {
       url: "",
-      page: props.page,
       open: false,
       urlShortened: this.props.hash,
       invalidUrl: false,
@@ -93,8 +94,6 @@ class Home extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      docs: nextProps.docs,
-      page: nextProps.page,
       urlShortened: nextProps.hash,
       open: (nextProps.hash !== '') ? true : false
     })
@@ -249,50 +248,8 @@ class Home extends React.Component {
               />
             </Paper>
           <div>
-            <Paper
-              style={{marginTop: 20}}
-              rounded={false}
-              zDepth={1}
-            >
-              <Toolbar>
-                <ToolbarGroup>
-                  <ToolbarTitle text={`Recents URL's`} />
-                </ToolbarGroup>
-                <ToolbarGroup>
-                  <FontIcon className="material-icons" onClick={(e) => this.props.updateDocs()}>refresh</FontIcon>
-                </ToolbarGroup>
-              </Toolbar>
-              <Table style={{marginTop: 20}} fixedHeader={true} selectable={false}>
-                <TableHeader displaySelectAll={false} adjustForCheckbox={false} selectable={false}>
-                  <TableRow>
-                    <TableHeaderColumn>Short URL</TableHeaderColumn>
-                    <TableHeaderColumn>Original URL</TableHeaderColumn>
-                  </TableRow>
-                </TableHeader>
-                <TableBody displayRowCheckbox={false}>
-                  {this.state.docs.data.docs.map((doc, i) => {
-                    return <TableRow key={"register-"+i}>
-                        <TableRowColumn>
-                          <a href={`https://lfum.es/${doc.hash}`} target="_blank">{`https://lfum.es/${doc.hash}`}</a>
-                        </TableRowColumn>
-                        <TableRowColumn>{doc.url}</TableRowColumn>
-                      </TableRow>
-                  })}
-                  <TableRow key={"register-total"}>
-                    <TableRowColumn>
-                    </TableRowColumn>
-                    <TableRowColumn style={{textAlign: 'right'}}>
-                      <Pagination
-                        total={Math.round(this.state.docs.all.value / 10)}
-                        current={this.state.page}
-                        display={10}
-                        onChange={this.props.updatePage}
-                      />
-                    </TableRowColumn>
-                  </TableRow>
-                </TableBody>
-              </Table>
-              
+            <Paper style={{marginTop: 20}} rounded={false} zDepth={1} >
+              <ListUrls />
             </Paper>
           </div>
         </div>
@@ -309,20 +266,12 @@ Home.propTypes = {
 const mapStateToProps = (state) => {
   return {
     uri: state.appReducer.uri,
-    docs: state.docsReducer.docs,
-    page: state.paginationReducer.page,
     hash: state.hashCreatedReducer.hash
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateDocs: () => {
-      dispatch(updateDocs())
-    },
-    updatePage: (page) => {
-      dispatch(updatePage(page))
-    },
     createUrl: (url) => {
       dispatch(createUrl(url))
     },
