@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from "react"
 import { connect } from "react-redux"
 import { dispatch } from "redux"
 import FacebookLogin from 'react-facebook-login'
+import GoogleLogin from 'react-google-login'
 import _ from 'lodash'
 
 import FontIcon from 'material-ui/FontIcon'
@@ -12,7 +13,7 @@ import Divider from 'material-ui/Divider'
 import Avatar from 'material-ui/Avatar'
 import {Menu, MenuItem} from 'material-ui/Menu'
 
-import { updateUser } from '../actions/user'
+import { updateUser, syncUser } from '../actions/user'
 
 class LeftMenu extends React.Component {
 
@@ -24,6 +25,7 @@ class LeftMenu extends React.Component {
       user: this.props.user
     }
 
+    this.responseGoogle = this.responseGoogle.bind(this)
     this.responseFacebook = this.responseFacebook.bind(this)
     this.logoff = this.logoff.bind(this)
   }
@@ -33,6 +35,25 @@ class LeftMenu extends React.Component {
       open: nextProps.open,
       user: nextProps.user
     })
+  }
+
+  responseGoogle(response) {
+    let user = this.props.user
+    console.log(response)
+    
+    if (!response.error) {
+        user = {
+          accessToken: response.tokenId,
+          id: response.googleId,
+          name: response.profileObj.givenName.concat(' ' + response.profileObj.familyName),
+          email: response.profileObj.email,
+          picture: response.profileObj.imageUrl
+        }
+    }
+    this.context.router.push({
+      pathname: '/',
+    });
+    this.props.updateUser(user, 'GOOGLE')
   }
 
   responseFacebook(response) {
@@ -47,33 +68,55 @@ class LeftMenu extends React.Component {
         picture: response.picture.data.url
       }
     }
-    this.props.updateUser(user)
+
+    this.context.router.push({
+      pathname: '/',
+    });
+    this.props.updateUser(user, 'FACEBOOK')
   }
 
   logoff() {
-    this.props.updateUser({}, true)
+    this.props.updateUser({}, 'LOGOFF')
   }
 
   _facebookLogin() {
-    let autoload = true
-    let user = {}
-    let storage = {}
-    if (typeof localStorage !== 'undefined')
-      storage = localStorage.getItem('ul')
-    if (_.size(storage) > 0)
-      user = JSON.parse(storage)
-    if (user.fi === '' || user.fi === undefined)
-      autoload = false
-
     return <FacebookLogin
       appId="1953192988244454"
       isMobile={true}
-      autoLoad={autoload}
+      autoLoad={false}
       size="metro"
       fields="name,email,picture"
-      callback={(response) => this.responseFacebook(response)}
+      callback={response => this.responseFacebook(response)}
       icon="fa-facebook"
     />
+  }
+
+  _googleLogin() {
+    let style = {
+      display: `inline-block`,
+      background: `rgb(209, 72, 54)`,
+      color: `rgb(255, 255, 255)`,
+      width: `200px`,
+      height: `70px`,
+      paddingTop: `10px`,
+      paddingBottom: `10px`,
+      fontSize: `16px`,
+      fontWeight: `bold`,
+      fontFamily: `Roboto`,
+      border: `0px solid transparent`
+    }
+
+    return <GoogleLogin
+      clientId="844708446485-5094nprkc5sv291td3fb2n1aqmgl3g8c.apps.googleusercontent.com"
+      onSuccess={response => this.responseGoogle(response)}
+      onFailure={response => this.responseGoogle(response)}
+      style={style}
+      autoLoad={false}
+      approvalPrompt="force"
+      >
+      <i className="fa fa-google"></i>
+      <span> LOGIN WITH<br /> GOOGLE</span>
+    </GoogleLogin>
   }
 
   _userLogged() {
@@ -101,19 +144,28 @@ class LeftMenu extends React.Component {
   }
 
   render() {
-    let drawerContent = this._facebookLogin()
     if (this.state.user.accessToken && this.state.user.accessToken !== '') {
-      drawerContent = this._userLogged()
+      return <Drawer width={200}
+        docked={false}
+        open={this.state.open}
+        onRequestChange={(open) => this.setState({open})}>
+        {this._userLogged()}
+      </Drawer>
     }
-    return <Drawer 
-      width={200}
+
+    return <Drawer width={200}
       docked={false}
       open={this.state.open}
-      onRequestChange={(open) => this.setState({open})}
-    >
-      {drawerContent}
-    </Drawer>
+      onRequestChange={(open) => this.setState({open})}>
+      {this._facebookLogin()}
+      {this._googleLogin()}
+    </Drawer> 
+    
   }
+}
+
+LeftMenu.contextTypes = {
+  router: React.PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state)=> {
@@ -124,8 +176,11 @@ const mapStateToProps = (state)=> {
 
 const mapDispatchToProps = (dispatch)=> {
   return {
-    updateUser: (user) => {
-      dispatch(updateUser(user))
+    syncUser: () => {
+      dispatch(syncUser())
+    },
+    updateUser: (user, type) => {
+      dispatch(updateUser(user, type))
     }
   }
 }

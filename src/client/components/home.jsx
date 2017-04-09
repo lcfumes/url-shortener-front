@@ -5,6 +5,7 @@ import Notifications from "react-notify-toast";
 
 /**/
 import { createUrl, updateHash } from '../actions/docs';
+import { syncUser } from '../actions/user'
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import FontIcon from 'material-ui/FontIcon';
@@ -90,7 +91,12 @@ class Home extends React.Component {
   }
 
   componentWillMount() {
-    logPageView();
+    logPageView()
+  }
+
+  componentDidMount() {
+    console.log(this.props.user)
+    this.props.syncUser()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -265,6 +271,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateUser: (user) => {
       dispatch(updateUser(user))
+    },
+    syncUser: () => {
+      dispatch(syncUser())
     }
   }
 };
