@@ -57,7 +57,7 @@ function createReduxStore(req, match) { // eslint-disable-line
 
 module.exports = (req) => {
 
-  let page = (req.query.page !== undefined) ? req.query.page : 1;
+  let page = (req.query.page !== undefined) ? parseInt(req.query.page) : 1;
 
   initialState = {
     appReducer: {

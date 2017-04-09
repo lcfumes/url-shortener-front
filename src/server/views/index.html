@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt" lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="URL Shortener - Open Source code on GitHub" />
+  <meta name="robots" content="INDEX,FOLLOW" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  {{META_TAGS}}
+  <title>{{PAGE_TITLE}}</title>
+  {{CRITICAL_CSS}}
+  {{PREFETCH_BUNDLES}}
+  {{WEBAPP_HEADER_BUNDLES}}
+</head>
+<body>
+<div class="js-content">{{SSR_CONTENT}}</div>
+{{WEBAPP_BODY_BUNDLES}}
+<script>if (window.webappStart) webappStart();</script>
+<noscript>
+  <h4>JavaScript is Disabled</h4>
+  <p>Sorry, this webpage requires JavaScript to function correctly.</p>
+  <p>Please enable JavaScript in your browser and reload the page.</p>
+</noscript>
+</body>
+</html>

@@ -29,6 +29,10 @@ module.exports = {
       "module": "electrode-react-webapp/lib/hapi",
       "options": {
         "pageTitle": "lfum.es - Url Shortener",
+        "webpackDev": process.env.WEBPACK_DEV === "true",
+        "serverSideRendering": true,
+        "renderJS": true,
+        "htmlFile": "./{{env.APP_SRC_DIR}}/server/views/index.html",
         "paths": {
           "/{args*}": {
             "content": {

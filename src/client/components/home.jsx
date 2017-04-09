@@ -2,7 +2,6 @@ import React, {PropTypes} from "react";
 import {connect} from "react-redux";
 /**/
 import Notifications from "react-notify-toast";
-import Helmet from "react-helmet";
 
 /**/
 import { createUrl, updateHash} from '../actions/docs';
@@ -20,11 +19,9 @@ import Dialog from 'material-ui/Dialog';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import Snackbar from 'material-ui/Snackbar';
 import Subheader from 'material-ui/Subheader';
-
-import ListUrls from './listurls';
-
 import validUrl from 'valid-url';
 
+import ListUrls from './listurls';
 import githubImg from '../images/github/GitHub-Mark-Light-32px.png';
 
 import ReactGA from 'react-ga';
@@ -173,32 +170,18 @@ class Home extends React.Component {
     return (      
       <MuiThemeProvider>
         <div>
-          <Helmet
-              htmlAttributes={{lang: "en", amp: undefined}} // amp takes no value
-              title="lfum-es - Url Shortener"
-              titleTemplate="lfum.es - %s"
-              defaultTitle="lfum.es - Url Shortener"
-              titleAttributes={{itemprop: "name", lang: "en"}}
-              base={{target: "_blank", href: "https://lfum.es"}}
-              meta={[
-                  {name: "description", content: "URL Shortener - Open Source code on GitHub"},
-                  {property: "og:type", content: "article"}
-              ]}
-          />
           <Notifications />
           <Snackbar
             open={this.state.copied}
             message="Copied to Clipboard"
             autoHideDuration={4000}
             onRequestClose={this.handleRequestClose}
-            bodyStyle={{ backgroundColor: "rgb(255, 64, 129)", color: 'coral' }}
-          />
+            bodyStyle={{ backgroundColor: "rgb(255, 64, 129)", color: 'coral' }} />
           <Dialog
             title={dialogTitle}
             actions={actions}
             modal={true}
-            open={this.state.open}
-          >
+            open={this.state.open} >
             <p>
               {`Don't forget to copy the shortened URL`}
             </p>
@@ -209,44 +192,38 @@ class Home extends React.Component {
                 underlineShow={true} 
                 readOnly={true}
                 onClick={this.handleCopyUrl}
-                id="url-shortened"
-              />
+                id="url-shortened" />
               <CopyToClipboard 
                 text={`https://lfum.es/${this.state.urlShortened}`}
-                onCopy={() => this.setState({copied: true})}>
+                onCopy={() => this.setState({copied: true})} >
                 <RaisedButton
                   secondary={true}
                   icon={<FontIcon className="material-icons">content_copy</FontIcon>}
-                  onClick={this.handleCopyUrl}
-                />
+                  onClick={this.handleCopyUrl} />
               </CopyToClipboard>
             </Paper>
           </Dialog>
           <AppBar
             title="URL Shortener"
             showMenuIconButton={false}
-            iconElementRight={repositoryLink}
-          />
-          
-            <Paper style={styles.paperUrl} zDepth={1}>
-              <TextField 
-                hintText="Enter your original URL here" 
-                style={{width: '80%', marginRight: 20, textAlign: 'left'}}
-                inputStyle={{width: '60%'}} 
-                underlineShow={true} 
-                onChange={(e) => this.handleKeyPress(e)}
-                id="url"
-                value={this.state.url}
-                errorText={this.state.invalidUrl && 'Does not appear to be a valid URL'}
-              />
-              <RaisedButton
-                label="Shorten URL"
-                labelPosition="before"
-                primary={true}
-                icon={<FontIcon className="material-icons">link</FontIcon>}
-                onClick={(e) => this.shortenUrl()}
-              />
-            </Paper>
+            iconElementRight={repositoryLink} />
+          <Paper style={styles.paperUrl} zDepth={1}>
+            <TextField 
+              hintText="Enter your original URL here" 
+              style={{width: '80%', marginRight: 20, textAlign: 'left'}}
+              inputStyle={{width: '60%'}} 
+              underlineShow={true} 
+              onChange={(e) => this.handleKeyPress(e)}
+              id="url"
+              value={this.state.url}
+              errorText={this.state.invalidUrl && 'Does not appear to be a valid URL'} />
+            <RaisedButton
+              label="Shorten URL"
+              labelPosition="before"
+              primary={true}
+              icon={<FontIcon className="material-icons">link</FontIcon>}
+              onClick={(e) => this.shortenUrl()} />
+          </Paper>
           <div>
             <Paper style={{marginTop: 20}} rounded={false} zDepth={1} >
               <ListUrls />
