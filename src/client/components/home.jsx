@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import Notifications from "react-notify-toast";
 
 /**/
-import { createUrl, updateHash} from '../actions/docs';
+import { createUrl, updateHash } from '../actions/docs';
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import FontIcon from 'material-ui/FontIcon';
@@ -19,9 +19,12 @@ import Dialog from 'material-ui/Dialog';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import Snackbar from 'material-ui/Snackbar';
 import Subheader from 'material-ui/Subheader';
+
 import validUrl from 'valid-url';
 
 import ListUrls from './listurls';
+import LeftMenu from './leftmenu';
+
 import githubImg from '../images/github/GitHub-Mark-Light-32px.png';
 
 import ReactGA from 'react-ga';
@@ -73,7 +76,8 @@ class Home extends React.Component {
       urlShortened: this.props.hash,
       invalidUrl: false,
       copied: false,
-      docs: props.docs
+      docs: props.docs,
+      leftMenu: false
     }
 
     this.handleOpen = this.handleOpen.bind(this);
@@ -91,6 +95,7 @@ class Home extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
+      user: nextProps.user,
       urlShortened: nextProps.hash,
       open: (nextProps.hash !== '') ? true : false
     })
@@ -205,8 +210,10 @@ class Home extends React.Component {
           </Dialog>
           <AppBar
             title="URL Shortener"
-            showMenuIconButton={false}
-            iconElementRight={repositoryLink} />
+            showMenuIconButton={true}
+            iconElementRight={repositoryLink} 
+            onLeftIconButtonTouchTap={() => { this.setState({leftMenu: !this.state.leftMenu}) }} />
+          <LeftMenu open={this.state.leftMenu} />
           <Paper style={styles.paperUrl} zDepth={1}>
             <TextField 
               hintText="Enter your original URL here" 
@@ -242,6 +249,7 @@ Home.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.userReducer.user,
     uri: state.appReducer.uri,
     hash: state.hashCreatedReducer.hash
   };
@@ -254,6 +262,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     updateHash: (hash) => {
       dispatch(updateHash(hash))
+    },
+    updateUser: (user) => {
+      dispatch(updateUser(user))
     }
   }
 };

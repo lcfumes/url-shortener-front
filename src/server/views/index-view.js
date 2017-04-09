@@ -78,6 +78,15 @@ module.exports = (req) => {
     },
     loadingReducer: {
       loading: false
+    },
+    userReducer: {
+      user: {
+        accessToken: '',
+        id: '',
+        name: '',
+        email: '',
+        picture: ''
+      }
     }
   }
   const app = req.server && req.server.app || req.app;
