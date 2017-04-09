@@ -67,7 +67,9 @@ class LeftMenu extends React.Component {
 
     return <FacebookLogin
       appId="1953192988244454"
+      isMobile={true}
       autoLoad={autoload}
+      size="metro"
       fields="name,email,picture"
       callback={(response) => this.responseFacebook(response)}
       icon="fa-facebook"
@@ -104,6 +106,7 @@ class LeftMenu extends React.Component {
       drawerContent = this._userLogged()
     }
     return <Drawer 
+      width={200}
       docked={false}
       open={this.state.open}
       onRequestChange={(open) => this.setState({open})}
