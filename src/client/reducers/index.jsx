@@ -6,6 +6,7 @@ import { paginationReducer } from './pagination';
 import { hashCreatedReducer } from './hash';
 import { loadingReducer } from './loading';
 import { userReducer } from './user';
+import { themeReducer } from './theme';
 
 export default combineReducers({
   appReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   paginationReducer,
   hashCreatedReducer,
   loadingReducer,
-  userReducer
+  userReducer,
+  themeReducer
 });

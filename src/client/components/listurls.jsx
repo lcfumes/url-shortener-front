@@ -8,6 +8,7 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 
 import Loading from './global/loading';
 import Pagination from './global/pagination';
+import ToogleTheme from './theme';
 
 import { updateDocs, updatePage} from '../actions/docs';
 import { updateLoading } from '../actions/loading';
@@ -50,7 +51,7 @@ class ListUrls extends React.Component {
       </div>
     }
 
-    return <Table style={{marginTop: 20}} fixedHeader={true} selectable={false}>
+    return <Table fixedHeader={true} selectable={false}>
       <TableHeader displaySelectAll={false} adjustForCheckbox={false} selectable={false}>
         <TableRow>
           <TableHeaderColumn>Short URL</TableHeaderColumn>
@@ -68,6 +69,7 @@ class ListUrls extends React.Component {
         })}
         <TableRow key={"register-total"}>
           <TableRowColumn>
+            <ToogleTheme /> Change Theme
           </TableRowColumn>
           <TableRowColumn style={{textAlign: 'right'}}>
             <Pagination
@@ -101,7 +103,8 @@ const mapStateToProps = (state)=> {
   return {
     docs: state.docsReducer.docs,
     page: state.paginationReducer.page,
-    loading: state.loadingReducer.loading
+    loading: state.loadingReducer.loading,
+    theme: state.themeReducer.theme
   }
 }
 

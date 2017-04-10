@@ -87,6 +87,9 @@ module.exports = (req) => {
         email: '',
         picture: ''
       }
+    },
+    themeReducer: {
+      theme: ''
     }
   }
   const app = req.server && req.server.app || req.app;

@@ -6,6 +6,7 @@ import Notifications from "react-notify-toast";
 /**/
 import { createUrl, updateHash } from '../actions/docs';
 import { syncUser } from '../actions/user'
+import { setTheme } from '../actions/theme'
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import FontIcon from 'material-ui/FontIcon';
@@ -20,6 +21,9 @@ import Dialog from 'material-ui/Dialog';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import Snackbar from 'material-ui/Snackbar';
 import Subheader from 'material-ui/Subheader';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+
 
 import validUrl from 'valid-url';
 
@@ -54,7 +58,7 @@ const styles = {
     padding: 10,
     marginTop: 20,
     textAlign: 'center',
-    marginLeft: 20
+    margin: `20px auto 0`
   },
   paperDialog:{
     flex: 1,
@@ -62,6 +66,14 @@ const styles = {
     width: '95%',
     padding: 10,
     marginTop: 20
+  },
+  paperList:{
+    flex: 1,
+    height: '100%',
+    width: '95%',
+    padding: 10,
+    textAlign: 'center',
+    margin: `20px auto 0`
   }
 };
 
@@ -95,8 +107,8 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.user)
     this.props.syncUser()
+    this.props.setTheme()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -178,10 +190,10 @@ class Home extends React.Component {
       <img src={githubImg} style={{width:30, margin: 10}} />
     </a>
 
+    let theme = (this.props.theme === 'dark') ? darkBaseTheme : ``;
     return (      
-      <MuiThemeProvider>
+      <MuiThemeProvider muiTheme={getMuiTheme(theme)}>
         <div>
-          <Notifications />
           <Snackbar
             open={this.state.copied}
             message="Copied to Clipboard"
@@ -238,7 +250,7 @@ class Home extends React.Component {
               onClick={(e) => this.shortenUrl()} />
           </Paper>
           <div>
-            <Paper style={{marginTop: 20}} rounded={false} zDepth={1} >
+            <Paper style={styles.paperList} rounded={false} zDepth={1} >
               <ListUrls />
             </Paper>
           </div>
@@ -257,7 +269,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.userReducer.user,
     uri: state.appReducer.uri,
-    hash: state.hashCreatedReducer.hash
+    hash: state.hashCreatedReducer.hash,
+    theme: state.themeReducer.theme
   };
 };
 
@@ -274,6 +287,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     syncUser: () => {
       dispatch(syncUser())
+    },
+    setTheme: () => {
+      dispatch(setTheme())
     }
   }
 };
