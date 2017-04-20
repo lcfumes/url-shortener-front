@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver -->
+<html itemscope="" itemtype="http://schema.org/QAPage"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>javascript - Npm install cannot find module 'semver' - Stack Overflow</title>
+    <link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com">
+    <meta property="og:type" content="website">
+
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded">
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="Npm install cannot find module &#39;semver&#39;">
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I can&#39;t use npm install using command prompt in NodeJS. I&#39;m getting this errors when running npm install:
+
+module.js:339
+    throw err;
+    ^
+Error: Cannot find module &#39;semver&#39;
+    at Function.Module.">
+    <meta property="og:url" content="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver">
+    <link rel="canonical" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver">
+
+    
+    
+    <script src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/rules-p-c1rF4kxgLUzNc.js"></script><script type="text/javascript" async="" src="http://engine.adzerk.net/ados?t=1492720416671&amp;request={%22Placements%22:[{%22A%22:22,%22S%22:8277,%22D%22:%22adzerk1479289029%22,%22AT%22:4,%22Z%22:[43]},{%22A%22:22,%22S%22:8277,%22D%22:%22adzerk366491702%22,%22AT%22:4,%22Z%22:[44]},{%22A%22:22,%22S%22:8277,%22D%22:%22adzerk1060246637%22,%22ATA%22:[5,17,2221,1129,43],%22Z%22:[45]}],%22Keywords%22:%22javascript%2Cnode.js%2Cmean-stack%2Cx-cross-site-serverfault.com%22,%22Referrer%22:%22https%3A%2F%2Fwww.google.com.br%2F%22,%22IsAsync%22:true}"></script><script async="" src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/quant.js"></script><script async="" src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/beacon.js"></script><script async="" src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/analytics.js"></script><script type="text/javascript" async="" src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/ados.js"></script><script src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/jquery.min.js"></script>
+    <script src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/stub.en.js"></script>
+    <link rel="stylesheet" type="text/css" href="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/all.css">
+
+            <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;Npm install cannot find module &#39;semver&#39;&#39;" href="http://stackoverflow.com/feeds/question/33870520">
+            <meta name="twitter:app:country" content="US">
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:iphone" content="871299723">
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver">
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS">
+            <meta name="twitter:app:id:ipad" content="871299723">
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver">
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
+
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
+
+                
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:2,shownCommentCount:2,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:33870520});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '33870520');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text', true); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","serverTime":1492720415,"routeName":"Questions/Show","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"enableInsertDocLinkDialog":true,"childUrl":"https://meta.stackoverflow.com","enableSocialMediaInSharePopup":true,"protocol":"http"},"user":{"fkey":"74605015953ae1e8dbd6b6508963b52d","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true,"canSeeNewHeaderDesign":true},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75,"likedTagsMaxLength":300,"dislikedTagsMaxLength":300}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true,"enableNewLinkInsertDialog":true,"enableImgurHttps":true,"forceHttpsImages":true},"comments":{},"userProfile":{"openGraphAPIKey":"58740831ad23540e00c58987"},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"ef5add8eb513","js/moderator.en.js":"a21527cce4e3","js/full-anon.en.js":"4c112588806a","js/full.en.js":"8c8b6cf63e93","js/wmd.en.js":"cfb2172dd8e4","js/third-party/jquery.autocomplete.min.js":"d3b8fa7fdf74","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"c37948fe0a99","js/help.en.js":"677da064451a","js/tageditor.en.js":"cb8f10d49739","js/tageditornew.en.js":"f8b650ef270a","js/inline-tag-editing.en.js":"2ddfa79492e7","js/revisions.en.js":"2faaeaae2529","js/review.en.js":"644a1584f1a7","js/tagsuggestions.en.js":"ddb0e41afe26","js/post-validation.en.js":"16a020eeeb13","js/explore-qlist.en.js":"e71f14781288","js/events.en.js":"94ea2574d95d","js/keyboard-shortcuts.en.js":"d97388b1ad0c","js/external-editor.en.js":"e574ed908cf3","js/adops.en.js":"9a6a7812a212","js/external-editor.en.js":"e574ed908cf3","js/snippet-javascript.en.js":"9ba1796a308e","js/snippet-javascript-codemirror.en.js":"e1c779784762"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    <noscript id="noscript-css">&lt;style type="text/css"&gt;body,.so-header{margin-top:1.9em}&lt;/style&gt;</noscript>
+<script async="" src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/full-anon.en.js"></script><script async="" src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/snippet-javascript.en.js"></script><script async="" src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/post-validation.en.js"></script><script async="" src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/prettify-full.en.js"></script><script type="text/javascript" src="http://static.adzerk.net/Extensions/adFeedback.js"></script><link rel="stylesheet" href="http://static.adzerk.net/Extensions/adFeedback.css"></head>
+<body class="question-page new-topbar">
+            <script>(function () { var old = $.fn.contents; $.fn.contents = function () { try { return old.apply(this, arguments); } catch (e) { return $([]); } } })()</script>
+        
+
+    <div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+<header class="so-header js-so-header _fixed _scrolling">
+    <div class="-container">
+        <div class="-main">            
+            <a href="http://stackoverflow.com/" class="-logo ">
+                <span class="-img">Stack Overflow</span>
+            </a>
+
+            <nav class="navigation" role="navigation" aria-label="site navigation">
+                <ol class="-list">
+                        <li class="-item _current">
+        <a id="nav-questions" href="http://stackoverflow.com/questions" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:true, location:2, destination:1})">Questions</a>
+    </li>
+
+    <li class="-item">
+        <a id="nav-jobs" href="http://stackoverflow.com/jobs?med=site-ui&amp;ref=jobs-tab" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:6})">Jobs</a>
+    </li>
+                        <li class="-item">
+        <a id="nav-docs" href="http://stackoverflow.com/documentation" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:7})">Documentation <small class="beta-badge">beta</small></a>
+    </li>
+                        <li class="-item">
+        <a id="nav-tags" href="http://stackoverflow.com/tags" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:2})">Tags</a>
+    </li>
+
+                        <li class="-item">
+        <a id="nav-users" href="http://stackoverflow.com/users" class="-link js-gps-track" data-gps-track="top_nav.click({is_current:false, location:2, destination:3})">Users</a>
+    </li>
+
+                </ol>
+            </nav>
+
+            <form id="search" action="http://stackoverflow.com/search" method="get" class="searchbar" autocomplete="off" role="search">
+                <svg viewBox="0 0 18 18" width="18" height="18" role="icon"><path fill-rule="evenodd" d="M12.864 11.32h-.813l-.288-.277A6.66 6.66 0 0 0 13.38 6.69a6.69 6.69 0 1 0-6.69 6.69 6.66 6.66 0 0 0 4.354-1.617l.278.288v.813L16.467 18 18 16.467l-5.136-5.146zm-6.174 0a4.625 4.625 0 0 1-4.632-4.63A4.625 4.625 0 0 1 6.69 2.058a4.625 4.625 0 0 1 4.63 4.632 4.625 4.625 0 0 1-4.63 4.63z"></path></svg>
+                <input name="q" type="text" placeholder="Search..." value="" tabindex="1" autocomplete="off" maxlength="240" class="f-input js-search-field">
+                <button type="submit" class="btn js-search-submit">
+                    <svg viewBox="0 0 18 18" width="18" height="18" role="icon"><path fill-rule="evenodd" d="M12.864 11.32h-.813l-.288-.277A6.66 6.66 0 0 0 13.38 6.69a6.69 6.69 0 1 0-6.69 6.69 6.66 6.66 0 0 0 4.354-1.617l.278.288v.813L16.467 18 18 16.467l-5.136-5.146zm-6.174 0a4.625 4.625 0 0 1-4.632-4.63A4.625 4.625 0 0 1 6.69 2.058a4.625 4.625 0 0 1 4.63 4.632 4.625 4.625 0 0 1-4.63 4.63z"></path></svg>
+                </button>
+            </form>
+
+        </div>
+        
+
+
+<div class="-actions">
+    <nav class="secondary-nav">
+        <div class="-dialog-container js-topbar-dialog-corral">
+
+
+    <div class="topbar-dialog siteSwitcher-dialog dno">
+        <div class="header">
+            <h3><a href="http://stackoverflow.com/">current community</a>
+            </h3>
+        </div>
+        <div class="modal-content current-site-container">
+            <ul class="current-site">
+                    <li>
+                            <div class="related-links">
+            <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:14 })">help</a>
+                    <a href="http://chat.stackoverflow.com/" class="js-gps-track" data-gps-track="site_switcher.click({ item_type:6 })">chat</a>
+            </div>
+
+    <a href="http://stackoverflow.com/" class="current-site-link site-link js-gps-track" data-id="1" data-gps-track="site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                    </li>
+                    <li class="related-site">
+                            <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                        
+    <a href="https://meta.stackoverflow.com/" class="site-link js-gps-track" data-id="552" data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                    </li>
+            </ul>
+        </div>
+
+        <div class="header" id="your-communities-header">
+            <h3>
+your communities            </h3>
+
+        </div>
+        <div class="modal-content" id="your-communities-section">
+
+                <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;amp;utm_source=stackoverflow.com&amp;amp;utm_medium=dev-story&amp;amp;utm_campaign=signup-redirect" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:10 })">Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f33870520%2fnpm-install-cannot-find-module-semver" class="login-link js-gps-track" data-gps-track="site_switcher.click({ item_type:11 })">log in</a> to customize your list.
+                </div>
+        </div>
+
+        <div class="header">
+            <h3><a href="https://stackexchange.com/sites">more stack exchange communities</a>
+            </h3>
+            <a href="https://stackoverflow.blog/" class="fr">company blog</a>
+        </div>
+        <div class="modal-content">
+                <div class="child-content"></div>
+        </div>        
+    </div>
+                <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="http://stackoverflow.com/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="http://stackoverflow.com/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="https://meta.stackoverflow.com/" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.stackoverflowbusiness.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+
+        </div>
+        <ol class="-list">
+            
+    <li class="-item"><a href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#" class="-link js-help-button" title="Help Center and other resources">
+        <svg viewBox="0 0 18 18" width="18" height="18" role="icon"><path fill-rule="evenodd" d="M9 0a9 9 0 1 0 .001 18.001A9 9 0 0 0 9 0zm.812 13.126c-.02.716-.55 1.157-1.238 1.137-.659-.02-1.177-.49-1.157-1.209.02-.715.566-1.17 1.225-1.15.691.021 1.194.507 1.17 1.222zm1.956-5.114c-.168.237-.546.542-1.02.912l-.527.361c-.257.197-.417.43-.502.695-.044.141-.076.507-.084.752-.004.048-.032.156-.181.156H7.883c-.165 0-.185-.096-.18-.144.023-.667.12-1.218.397-1.66.374-.594 1.426-1.221 1.426-1.221.161-.12.286-.25.382-.39.177-.24.321-.51.321-.8 0-.333-.08-.65-.293-.915-.249-.31-.518-.458-1.036-.458-.51 0-.808.257-1.021.594-.213.338-.177.735-.177 1.097H5.746c0-1.366.357-2.238 1.112-2.752.51-.35 1.162-.502 1.921-.502.996 0 1.788.184 2.487.715.647.49.988 1.181.988 2.113 0 .575-.2 1.057-.486 1.447z"></path></svg>
+    </a></li>
+                <li class="-item">
+        <a href="https://stackexchange.com/" class="-link js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 167 Stack Exchange sites">
+            <svg viewBox="0 0 18 19" width="18" height="19" role="icon"><path fill-rule="evenodd" d="M0 14a2 2 0 0 0 2 2h10v3l3-3h1a2 2 0 0 0 2-2v-2H0v2zM16 0H2a2 2 0 0 0-2 2v2h18V2a2 2 0 0 0-2-2zM0 6h18v4H0V6z"></path></svg>
+        </a>
+    </li>
+
+
+        </ol>
+    </nav>
+        <div class="-ctas">
+                    <a href="https://stackoverflow.com/users/login?ssrc=head&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f33870520%2fnpm-install-cannot-find-module-semver" class="login-link btn-clear" rel="nofollow">Log In</a>
+                        <a href="https://stackoverflow.com/users/signup?ssrc=head&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;utm_source=stackoverflow.com&amp;utm_medium=dev-story&amp;utm_campaign=signup-redirect" class="login-link btn" rel="nofollow">Sign Up</a>
+
+        </div>
+</div>
+    </div>
+</header>
+
+    <script>
+        StackExchange.ready(function () { StackExchange.topbar.init(); });
+            StackExchange.scrollPadding.setPaddingTop(60, 10);     </script>
+
+    <div class="container">
+        
+
+
+        <div id="content" class="snippet-hidden">
+
+
+
+            
+
+<div itemscope="" itemtype="http://schema.org/Question">
+    <link itemprop="image" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+
+
+<div id="herobox" class="alternate">
+    <div class="test"></div>
+        <div id="close">
+            <a title="click to minimize"><span>x</span> Dismiss</a>
+        </div>
+    <div class="content">
+        <b>Faça parte da comunidade Stack Overflow</b>
+        <div class="separator"></div>
+        <div class="blurb">
+            O Stack Overflow é uma comunidade com 7.0 milhões de programadores como você, ajudando uns aos outros.
+                <br>
+Junte-se a nós; não demora nada:                <br>
+        </div>
+        <a href="https://pt.stackoverflow.com/users/signup?ssrc=en_hero&amp;returnurl=https%3a%2f%2fpt.stackoverflow.com" id="tell-me-more" class="button">Entrar</a>
+    </div>
+</div>
+<script>
+    StackExchange.ready(function () {
+
+        var location = 0;
+        if ($("body").hasClass("questions-page")) {
+            location = 1;;
+        } else if ($("body").hasClass("question-page")) {
+            location = 1;;
+        } else if ($("body").hasClass("faq-page")) {
+            location = 5;;
+        } else if ($("body").hasClass("home-page")) {
+            location = 3;;
+        }
+        
+        $('#tell-me-more').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: 'cta', location: location }, true);
+            });
+        });
+        
+        $('#herobox #close').click(function () {
+            StackExchange.using("gps", function () {
+                StackExchange.gps.track("hero.action", { hero_action_type: "minimize", location: location }, true);
+            });
+            
+            $.cookie("hero", "mini", { path: "/", expires: 365 });
+            $.ajax({
+                url: "/hero-mini",
+                success: function (data) {
+                    $("#herobox").fadeOut("fast", function () {
+                        $("#herobox").replaceWith(data);
+                        $("#herobox-mini").fadeIn("fast");
+                    });
+                }
+            });
+            return false;
+        });
+    });
+
+</script>			<div id="question-header">
+                <h1 itemprop="name"><a href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver" class="question-hyperlink">Npm install cannot find module 'semver'</a></h1>
+
+            
+<div class="aside-cta" role="navigation" aria-label="ask new question">
+    <a href="http://stackoverflow.com/questions/ask" class="btn-outlined">Ask Question</a>
+</div>
+		</div>
+			<div id="mainbar" role="main" aria-label="question and answers">
+
+			
+
+<div class="question" data-questionid="33870520" id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1479289029",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1479289029"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo5MTgyOCwiY2giOjExNzgsImNrIjp7fSwiY3IiOjczODAyOSwiZGkiOiJhNTNlMTUxZGIxZGE0MzU5OWE2ODY4MmJkNTNhM2MxMCIsImRtIjoxLCJmYyI6NzY5MDc3LCJmbCI6MTY1MjkzLCJpcCI6IjIwMC4xODYuNTAuMTYyIiwia3ciOiJqYXZhc2NyaXB0LG5vZGUuanMsbWVhbi1zdGFjayx4LWNyb3NzLXNpdGUtc2VydmVyZmF1bHQuY29tIiwibnciOjIyLCJwYyI6MCwiZWMiOjAsInByIjo3NjUsInJ0IjoxLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20uYnIvIiwic2IiOiJpLTAxMTIxYWE3YjBjNzM4MzUzIiwic3AiOjQxMjQsInN0Ijo4Mjc3LCJ1ayI6InVlMS01M2RjNGUxOTgyZDI0MGM1OWFjNGQ3N2Q4OGMwZjY4YSIsInpuIjo0MywidHMiOjE0OTI3MjA0MTcxNjcsImJmIjp0cnVlLCJwbiI6ImFkemVyazE0NzkyODkwMjkiLCJ1ciI6Imh0dHA6Ly9wdC5zdGFja292ZXJmbG93LmNvbS8_dXRtX3NvdXJjZT1zdGFja292ZXJmbG93LmNvbSZ1dG1fbWVkaXVtPWFkJnV0bV9jYW1wYWlnbj1wdHNvLTImdXRtX2NvbnRlbnQ9bGItbmFvLWVuY29udHJvdS1ob21lIn0&amp;s=M63Nqio6mfebI6cUsESIiRTJakM" rel="nofollow" target="_blank" title=""><img src="http://static.adzerk.net/Advertisers/6e0015aeac9141fe82cf1fa9ea10554d.png" title="" alt="" border="0" width="728" height="90" style="display: none !important;"></a><img height="0px" width="0px" border="0" style="position: absolute; display: none !important;" src="http://engine.adzerk.net/i.gif?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo5MTgyOCwiY2giOjExNzgsImNrIjp7fSwiY3IiOjczODAyOSwiZGkiOiJhNTNlMTUxZGIxZGE0MzU5OWE2ODY4MmJkNTNhM2MxMCIsImRtIjoxLCJmYyI6NzY5MDc3LCJmbCI6MTY1MjkzLCJpcCI6IjIwMC4xODYuNTAuMTYyIiwia3ciOiJqYXZhc2NyaXB0LG5vZGUuanMsbWVhbi1zdGFjayx4LWNyb3NzLXNpdGUtc2VydmVyZmF1bHQuY29tIiwibnciOjIyLCJwYyI6MCwiZWMiOjAsInByIjo3NjUsInJ0IjoxLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20uYnIvIiwic2IiOiJpLTAxMTIxYWE3YjBjNzM4MzUzIiwic3AiOjQxMjQsInN0Ijo4Mjc3LCJ1ayI6InVlMS01M2RjNGUxOTgyZDI0MGM1OWFjNGQ3N2Q4OGMwZjY4YSIsInpuIjo0MywidHMiOjE0OTI3MjA0MTcxNjgsImJmIjp0cnVlLCJwbiI6ImFkemVyazE0NzkyODkwMjkiLCJmcSI6MX0&amp;s=KeZxbdsicb-ui3G8d3WF-9TXj9s"></div>    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="33870520">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">22</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#">favorite</a>
+        <div class="favoritecount"><b>8</b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I can't use <code>npm install</code> using command prompt in NodeJS. I'm getting this errors when running <code>npm install</code>:</p>
+
+<pre class="lang-js prettyprint prettyprinted"><code><span class="pln">module</span><span class="pun">.</span><span class="pln">js</span><span class="pun">:</span><span class="lit">339</span><span class="pln">
+    </span><span class="kwd">throw</span><span class="pln"> err</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">^</span><span class="pln">
+</span><span class="typ">Error</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Cannot</span><span class="pln"> find module </span><span class="str">'semver'</span><span class="pln">
+    at </span><span class="typ">Function</span><span class="pun">.</span><span class="typ">Module</span><span class="pun">.</span><span class="pln">_resolveFilename </span><span class="pun">(</span><span class="pln">module</span><span class="pun">.</span><span class="pln">js</span><span class="pun">:</span><span class="lit">337</span><span class="pun">:</span><span class="lit">15</span><span class="pun">)</span><span class="pln">
+    at </span><span class="typ">Function</span><span class="pun">.</span><span class="typ">Module</span><span class="pun">.</span><span class="pln">_load </span><span class="pun">(</span><span class="pln">module</span><span class="pun">.</span><span class="pln">js</span><span class="pun">:</span><span class="lit">287</span><span class="pun">:</span><span class="lit">25</span><span class="pun">)</span><span class="pln">
+    at </span><span class="typ">Module</span><span class="pun">.</span><span class="pln">require </span><span class="pun">(</span><span class="pln">module</span><span class="pun">.</span><span class="pln">js</span><span class="pun">:</span><span class="lit">366</span><span class="pun">:</span><span class="lit">17</span><span class="pun">)</span><span class="pln">
+    at require </span><span class="pun">(</span><span class="pln">module</span><span class="pun">.</span><span class="pln">js</span><span class="pun">:</span><span class="lit">385</span><span class="pun">:</span><span class="lit">17</span><span class="pun">)</span><span class="pln">
+    at </span><span class="typ">Object</span><span class="pun">.&lt;</span><span class="pln">anonymous</span><span class="pun">&gt;</span><span class="pln"> </span><span class="pun">(</span><span class="pln">C</span><span class="pun">:</span><span class="pln">\Users\admin\AppData\Roaming\npm\node_modules\npm\l
+ib\config\defaults</span><span class="pun">.</span><span class="pln">js</span><span class="pun">:</span><span class="lit">6</span><span class="pun">:</span><span class="lit">14</span><span class="pun">)</span><span class="pln">
+    at </span><span class="typ">Module</span><span class="pun">.</span><span class="pln">_compile </span><span class="pun">(</span><span class="pln">module</span><span class="pun">.</span><span class="pln">js</span><span class="pun">:</span><span class="lit">435</span><span class="pun">:</span><span class="lit">26</span><span class="pun">)</span><span class="pln">
+    at </span><span class="typ">Object</span><span class="pun">.</span><span class="typ">Module</span><span class="pun">.</span><span class="pln">_extensions</span><span class="pun">..</span><span class="pln">js </span><span class="pun">(</span><span class="pln">module</span><span class="pun">.</span><span class="pln">js</span><span class="pun">:</span><span class="lit">442</span><span class="pun">:</span><span class="lit">10</span><span class="pun">)</span><span class="pln">
+    at </span><span class="typ">Module</span><span class="pun">.</span><span class="pln">load </span><span class="pun">(</span><span class="pln">module</span><span class="pun">.</span><span class="pln">js</span><span class="pun">:</span><span class="lit">356</span><span class="pun">:</span><span class="lit">32</span><span class="pun">)</span><span class="pln">
+    at </span><span class="typ">Function</span><span class="pun">.</span><span class="typ">Module</span><span class="pun">.</span><span class="pln">_load </span><span class="pun">(</span><span class="pln">module</span><span class="pun">.</span><span class="pln">js</span><span class="pun">:</span><span class="lit">311</span><span class="pun">:</span><span class="lit">12</span><span class="pun">)</span><span class="pln">
+    at </span><span class="typ">Module</span><span class="pun">.</span><span class="pln">require </span><span class="pun">(</span><span class="pln">module</span><span class="pun">.</span><span class="pln">js</span><span class="pun">:</span><span class="lit">366</span><span class="pun">:</span><span class="lit">17</span><span class="pun">)</span></code></pre>
+
+<p>Please help me. </p>
+    </div>
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/javascript" class="post-tag js-gps-track" title="show questions tagged &#39;javascript&#39;" rel="tag">javascript</a> <a href="http://stackoverflow.com/questions/tagged/node.js" class="post-tag js-gps-track" title="show questions tagged &#39;node.js&#39;" rel="tag">node.js</a> <a href="http://stackoverflow.com/questions/tagged/mean-stack" class="post-tag js-gps-track" title="show questions tagged &#39;mean-stack&#39;" rel="tag">mean-stack</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/q/33870520" title="short permalink to this question" class="short-link" id="link-post-33870520">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/33870520/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/33870520/revisions" title="show all edits to this post">edited <span title="2015-11-23 13:25:41Z" class="relativetime">Nov 23 '15 at 13:25</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/4922108/rodmentou"><div class="gravatar-wrapper-32"><img src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/photo.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/4922108/rodmentou">Rodmentou</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">990</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="9 silver badges"><span class="badge2"></span><span class="badgecount">9</span></span><span title="30 bronze badges"><span class="badge3"></span><span class="badgecount">30</span></span>
+        </div>
+    </div>
+</div>    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2015-11-23 11:55:03Z" class="relativetime">Nov 23 '15 at 11:55</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/2447562/user2447562"><div class="gravatar-wrapper-32"><img src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/f72577ad354c1ffbf12704c22da2a5d8" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/2447562/user2447562">user2447562</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">156</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="9 bronze badges"><span class="badge3"></span><span class="badgecount">9</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+        </tr>
+                    
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-33870520" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-69165214" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I had the same problem Alternatively, you can use yarn, instead of npm</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/7225546/wojciech-ma%c5%9blanka" title="1 reputation" class="comment-user">Wojciech Maślanka</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#comment69165214_33870520"><span title="2016-12-05 14:00:06Z" class="relativetime-clean">Dec 5 '16 at 14:00</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-72738434" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Are you using yarn to install the package.json ?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1453965/anandharshan" title="666 reputation" class="comment-user">anandharshan</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#comment72738434_33870520"><span title="2017-03-15 14:49:42Z" class="relativetime-clean">Mar 15 at 14:49</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-33870520" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#" onclick=""></a>
+        </div>         
+    </td>
+</tr>        </tbody></table>
+</div>
+
+			<div id="answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+								4 Answers
+                                <span style="display:none;" itemprop="answerCount">4</span>
+						</h2>
+						<div>
+							<div id="tabs">
+        <a href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+</div>
+						</div>
+					</div>    
+
+
+<div class="question-status" id="mfnes-container">
+    <div class="g-row">
+        <div class="-content g-col">
+            <p style="font-size: 120%">
+                Não encontrou uma resposta? <a id="mfnes-link" class="js-dismiss mfnes-link" href="http://pt.stackoverflow.com/questions/ask?fromen=204d2b80103f4">Pergunte em Stack Overflow em Português.</a>
+            </p>
+        </div>
+        <div class="-actions g-col1">
+            <a id="mfnes-dismiss" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#" class="js-dismiss">✕</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document)
+        .ready(function () {
+            var notification = $('#mfnes-container'),
+                link = notification.find('#mfnes-link'),
+                dismiss = notification.find('#mfnes-dismiss');
+            dismiss.on('click',
+                function () {
+                    notification.slideUp();
+                    $.ajax("/mfnes/dismiss/33870520/pt/1");
+                    return false;
+                });
+            link.on('click',
+                function () {
+                    $.ajax("/mfnes/click/33870520/pt/1");
+                });
+        });
+</script>				</div>    
+
+
+
+
+  
+<a name="35597057"></a>
+<div id="answer-35597057" class="answer" data-answerid="35597057" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="35597057">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">67</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I had the same error. <code>npm uninstall npm -g</code>, <code>rm -rf node_modules</code> didn't help me, because when I tried I was getting <code>Error: Cannot find module 'semver'</code>. But I solve my problem with these steps:</p>
+
+<ul>
+<li><code>sudo rm -rf /usr/local/lib/node_modules</code></li>
+<li><code>sudo rm -rf ~/.npm</code></li>
+<li><code>brew uninstall --force node</code></li>
+<li><code>brew install node</code></li>
+</ul>
+
+<p>Hope this will help those who are getting a similar problem.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/35597057" title="short permalink to this answer" class="short-link" id="link-post-35597057">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/35597057/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info user-hover">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/35597057/revisions" title="show all edits to this post">edited <span title="2017-03-16 11:35:36Z" class="relativetime">Mar 16 at 11:35</span></a>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1317348/himalayancoder"><div class="gravatar-wrapper-32"><img src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/l2M28.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1317348/himalayancoder">HimalayanCoder</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">3,748</span><span title="2 gold badges"><span class="badge1"></span><span class="badgecount">2</span></span><span title="25 silver badges"><span class="badge2"></span><span class="badgecount">25</span></span><span title="34 bronze badges"><span class="badge3"></span><span class="badgecount">34</span></span>
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2016-02-24 08:35:38Z" class="relativetime">Feb 24 '16 at 8:35</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/5652719/archie-voyage"><div class="gravatar-wrapper-32"><img src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/MSvEE.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/5652719/archie-voyage">Archie Voyage</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">841</span><span title="3 silver badges"><span class="badge2"></span><span class="badgecount">3</span></span><span title="6 bronze badges"><span class="badge3"></span><span class="badgecount">6</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-35597057" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="5" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-59509835" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Used this on two different machines running El Capitan, worked in both cases.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/1993468/kamikaze-rusher" title="70 reputation" class="comment-user">Kamikaze Rusher</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#comment59509835_35597057"><span title="2016-03-10 19:41:04Z" class="relativetime-clean">Mar 10 '16 at 19:41</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-70697308" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">3</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Use <code>brew uninstall --force node</code> to remove all versions</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/574880/deleze" title="346 reputation" class="comment-user">deleze</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#comment70697308_35597057"><span title="2017-01-19 21:53:31Z" class="relativetime-clean">Jan 19 at 21:53</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-71598212" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">2</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Bloody helpful! Thank you Archie!</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/4197938/slick" title="1,359 reputation" class="comment-user">slick</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#comment71598212_35597057"><span title="2017-02-14 05:49:21Z" class="relativetime-clean">Feb 14 at 5:49</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-71882150" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I didn't use  <code>brew uninstall --force node</code> at first try, it's going to break node and npm. Looks like if you have multiple version node installed, really need <code>--force</code></span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/351950/rob-l" title="521 reputation" class="comment-user">Rob L</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#comment71882150_35597057"><span title="2017-02-21 11:34:17Z" class="relativetime-clean">Feb 21 at 11:34</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-72676527" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">just install npm again. <code>curl -0 -L https://npmjs.org/install.sh | sudo sh</code> after remove npm folder</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/314173/baryon-lee" title="697 reputation" class="comment-user">Baryon Lee</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#comment72676527_35597057"><span title="2017-03-14 08:41:10Z" class="relativetime-clean">Mar 14 at 8:41</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-35597057" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#" onclick="">show <b>5</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk366491702",4).setZone(44); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk366491702"><a href="http://engine.adzerk.net/r?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo0NzE0OTMsImNoIjoxMTc4LCJjayI6e30sImNyIjoxNjI3NzcxLCJkaSI6ImQxM2RmOTljOTVlMDQ5ZjI5ODdmYWEyNWEwNDAzYWRjIiwiZG0iOjEsImZjIjoxOTI0NDUwLCJmbCI6MjE0MjMxMiwiaXAiOiIyMDAuMTg2LjUwLjE2MiIsImt3IjoiamF2YXNjcmlwdCxub2RlLmpzLG1lYW4tc3RhY2sseC1jcm9zcy1zaXRlLXNlcnZlcmZhdWx0LmNvbSIsIm53IjoyMiwicGMiOjAsImVjIjowLCJwciI6MTYwNCwicnQiOjEsInJmIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS5ici8iLCJzYiI6ImktMDExMjFhYTdiMGM3MzgzNTMiLCJzcCI6NDEyNCwic3QiOjgyNzcsInVrIjoidWUxLTUzZGM0ZTE5ODJkMjQwYzU5YWM0ZDc3ZDg4YzBmNjhhIiwiem4iOjQ0LCJ0cyI6MTQ5MjcyMDQxNzE2OSwiYmYiOnRydWUsInBuIjoiYWR6ZXJrMzY2NDkxNzAyIiwidXIiOiJodHRwOi8vc3RhY2tvdmVyZmxvdy5jb20vam9icy9yZW1vdGU_dXRtX3NvdXJjZT13ZWJzaXRlJnV0bV9tZWRpdW09YmFubmVyJnV0bV9jb250ZW50PWxlYWRlcmJvYXJkXzUmdXRtX2NhbXBhaWduPWhvdXNlX2Fkc19ST1NfU08ifQ&amp;s=oiZd0Ro-esBM3e2M-bs-XWbZ8Bo" rel="nofollow" target="_blank" title=""><img src="http://static.adzerk.net/Advertisers/f380ecc42410414693b467ac7a97901b.png" title="" alt="" border="0" width="728" height="90" style="display: none !important;"></a><img height="0px" width="0px" border="0" style="position: absolute; display: none !important;" src="http://engine.adzerk.net/i.gif?e=eyJhdiI6NDE0LCJhdCI6NCwiYnQiOjAsImNtIjo0NzE0OTMsImNoIjoxMTc4LCJjayI6e30sImNyIjoxNjI3NzcxLCJkaSI6ImQxM2RmOTljOTVlMDQ5ZjI5ODdmYWEyNWEwNDAzYWRjIiwiZG0iOjEsImZjIjoxOTI0NDUwLCJmbCI6MjE0MjMxMiwiaXAiOiIyMDAuMTg2LjUwLjE2MiIsImt3IjoiamF2YXNjcmlwdCxub2RlLmpzLG1lYW4tc3RhY2sseC1jcm9zcy1zaXRlLXNlcnZlcmZhdWx0LmNvbSIsIm53IjoyMiwicGMiOjAsImVjIjowLCJwciI6MTYwNCwicnQiOjEsInJmIjoiaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS5ici8iLCJzYiI6ImktMDExMjFhYTdiMGM3MzgzNTMiLCJzcCI6NDEyNCwic3QiOjgyNzcsInVrIjoidWUxLTUzZGM0ZTE5ODJkMjQwYzU5YWM0ZDc3ZDg4YzBmNjhhIiwiem4iOjQ0LCJ0cyI6MTQ5MjcyMDQxNzE3MCwiYmYiOnRydWUsInBuIjoiYWR6ZXJrMzY2NDkxNzAyIiwiZnEiOjB9&amp;s=guda8ciqFs8LqVaikAz1nF7cPfQ"></div>
+  
+<a name="41000891"></a>
+<div id="answer-41000891" class="answer" data-answerid="41000891" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="41000891">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">6</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I found the simple solution for this issue.</p>
+
+<p>Just remove C:\Users\username\AppData\Roaming\npm\
+then now install again node and now test. It will work.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/41000891" title="short permalink to this answer" class="short-link" id="link-post-41000891">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/41000891/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2016-12-06 17:02:25Z" class="relativetime">Dec 6 '16 at 17:02</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/7258272/gangadhar"><div class="gravatar-wrapper-32"><img src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/a8bd633a4de7545e16c1cf5b3ecc6218" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/7258272/gangadhar">Gangadhar</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">59</span><span title="1 silver badge"><span class="badge2"></span><span class="badgecount">1</span></span><span title="1 bronze badge"><span class="badge3"></span><span class="badgecount">1</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-41000891" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-69214486" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I wish I could double-up this vote for Windows. There's a gotcha: The AppData directory was hidden by default, so I didn't think it was actually installed at this location.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/133972/ringo" title="2,098 reputation" class="comment-user">Ringo</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#comment69214486_41000891"><span title="2016-12-06 19:02:01Z" class="relativetime-clean">Dec 6 '16 at 19:02</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-41000891" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="42901511"></a>
+<div id="answer-42901511" class="answer" data-answerid="42901511" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="42901511">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">4</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>I had this too, after running <code>brew install yarn</code> yesterday. At least, everything was fine up until then.</p>
+
+<p>I ran <code>rm -rf node_modules</code> and tried to reinstall, but no <code>npm</code> command was working. </p>
+
+<p>In the end I took the rather simple step of reinstalling Node via the official Node installer for Mac OS X.</p>
+
+<p><a href="https://nodejs.org/en/download/" rel="nofollow noreferrer">https://nodejs.org/en/download/</a></p>
+
+<p>Everything is fine now. Just went back to the directory, ran <code>npm install</code> and it's done the trick.</p>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/42901511" title="short permalink to this answer" class="short-link" id="link-post-42901511">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/42901511/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2017-03-20 10:43:02Z" class="relativetime">Mar 20 at 10:43</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/1181689/raffjones"><div class="gravatar-wrapper-32"><img src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/d985362317bbe78e9ab599f4da7b0ff8" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/1181689/raffjones">raffjones</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">828</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="9 silver badges"><span class="badge2"></span><span class="badgecount">9</span></span><span title="20 bronze badges"><span class="badge3"></span><span class="badgecount">20</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-42901511" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="0" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-73340420" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy"><code>npm install</code> did it for me. I was installing all of the dependencies one by one but <code>npm install</code> did them all at once. Thanks.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/391162/tazboy" title="625 reputation" class="comment-user">tazboy</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#comment73340420_42901511"><span title="2017-03-31 01:49:16Z" class="relativetime-clean">Mar 31 at 1:49</span></a></span>
+                        <span class="edited-yes" title="this comment was edited 2 times"></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-42901511" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link disabled-link " title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”.">add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#" onclick=""></a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+
+  
+<a name="33870766"></a>
+<div id="answer-33870766" class="answer" data-answerid="33870766" itemscope="" itemtype="http://schema.org/Answer">
+    <table>
+        <tbody><tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="33870766">
+        <a class="vote-up-off" title="This answer is useful">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This answer is not useful">down vote</a>
+
+
+
+
+</div>
+
+            </td>
+            
+
+
+<td class="answercell">
+    <div class="post-text" itemprop="text">
+<p>Just remove the /node_modules folder and try again. ;)</p>
+
+<p>You can use <code>npm rm</code> to remove it.</p>
+
+<p>You can also check <a href="https://github.com/npm/npm/issues/588" rel="nofollow">this issue</a> on GitHub.
+To be more specific about unnistal, try to follow <a href="https://github.com/npm/npm/blob/master/README.md#uninstalling" rel="nofollow">this</a>:</p>
+
+<blockquote>
+  <p><strong>Uninstalling</strong></p>
+  
+  <p>So sad to see you go.</p>
+  
+  <p>sudo <code>npm uninstall npm -g</code> Or, if that fails,</p>
+  
+  <p>sudo make uninstall More Severe Uninstalling</p>
+  
+  <p>Usually, the above instructions are sufficient. That will remove npm,
+  but leave behind anything you've installed.</p>
+  
+  <p>If you would like to remove all the packages that you have installed,
+  then you can use the npm ls command to find them, and then npm rm to
+  remove them.</p>
+  
+  <p>To remove cruft left behind by npm 0.x, you can use the included
+  clean-old.sh script file. You can run it conveniently like this:</p>
+  
+  <p>npm explore npm -g -- sh scripts/clean-old.sh npm uses two
+  configuration files, one for per-user configs, and another for global
+  (every-user) configs. You can view them by doing:</p>
+  
+  <p>npm config get userconfig   # defaults to ~/.npmrc npm config get
+  globalconfig # defaults to /usr/local/etc/npmrc Uninstalling npm does
+  not remove configuration files by default. You must remove them
+  yourself manually if you want them gone. Note that this means that
+  future npm installs will not remember the settings that you have
+  chosen.</p>
+</blockquote>
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+<div class="post-menu"><a href="http://stackoverflow.com/a/33870766" title="short permalink to this answer" class="short-link" id="link-post-33870766">share</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/33870766/edit" class="suggest-edit-post" title="">improve this answer</a></div>                    </td>
+    <td align="right" class="post-signature">
+<div class="user-info ">
+    <div class="user-action-time">
+        <a href="http://stackoverflow.com/posts/33870766/revisions" title="show all edits to this post">edited <span title="2015-11-23 12:13:17Z" class="relativetime">Nov 23 '15 at 12:13</span></a>
+    </div>
+    <div class="user-gravatar32">
+        
+    </div>
+    <div class="user-details">
+        
+        <div class="-flair">
+            
+        </div>
+    </div>
+</div>    </td>
+            
+
+
+    <td align="right" class="post-signature">   
+       
+
+    <div class="user-info ">
+    <div class="user-action-time">
+        answered <span title="2015-11-23 12:08:58Z" class="relativetime">Nov 23 '15 at 12:08</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="http://stackoverflow.com/users/4922108/rodmentou"><div class="gravatar-wrapper-32"><img src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/photo.jpg" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="http://stackoverflow.com/users/4922108/rodmentou">Rodmentou</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">990</span><span title="1 gold badge"><span class="badge1"></span><span class="badgecount">1</span></span><span title="9 silver badges"><span class="badge2"></span><span class="badgecount">9</span></span><span title="30 bronze badges"><span class="badge3"></span><span class="badgecount">30</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>
+        </tr>
+        
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-33870766" class="comments ">
+		    <table>
+                <tbody data-remaining-comments-count="3" data-canpost="false" data-cansee="true" data-comments-unavailable="false" data-addlink-disabled="true">
+
+
+
+    <tr id="comment-55504812" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">I have already do this process, but i am getting the same error....</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/2447562/user2447562" title="156 reputation" class="comment-user owner">user2447562</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#comment55504812_33870766"><span title="2015-11-23 12:10:58Z" class="relativetime-clean">Nov 23 '15 at 12:10</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-55504895" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">npm related anything could not be installed, please help me</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/2447562/user2447562" title="156 reputation" class="comment-user owner">user2447562</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#comment55504895_33870766"><span title="2015-11-23 12:12:59Z" class="relativetime-clean">Nov 23 '15 at 12:12</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-55505026" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Updated my answer. Try it now. If it does not work, test something for me. Copy the package.json to another folder and try to use npm install.</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/4922108/rodmentou" title="990 reputation" class="comment-user">Rodmentou</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#comment55505026_33870766"><span title="2015-11-23 12:16:08Z" class="relativetime-clean">Nov 23 '15 at 12:16</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-55505094" class="comment ">
+        <td>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                &nbsp;&nbsp;
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">npm ls command not working,getting same error........</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/2447562/user2447562" title="156 reputation" class="comment-user owner">user2447562</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#comment55505094_33870766"><span title="2015-11-23 12:18:04Z" class="relativetime-clean">Nov 23 '15 at 12:18</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+    <tr id="comment-55505235" class="comment ">
+        <td class="comment-actions">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class=" comment-score">
+                                <span title="number of &#39;useful comment&#39; votes received" class="cool">1</span>
+                        </td>
+                        <td>
+                                &nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td class="comment-text">
+            <div style="display: block;" class="comment-body">
+                <span class="comment-copy">Can you paste your package.json, please?</span>
+                    –&nbsp;<a href="http://stackoverflow.com/users/4922108/rodmentou" title="990 reputation" class="comment-user">Rodmentou</a>
+                <span class="comment-date" dir="ltr"><a class="comment-link" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#comment55505235_33870766"><span title="2015-11-23 12:21:51Z" class="relativetime-clean">Nov 23 '15 at 12:21</span></a></span>
+                                                                            </div>
+                    </td>
+    </tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-33870766" data-rep="50" data-anon="true">
+
+                <a class="js-add-link comments-link  dno" title="Use comments to ask for more information or suggest improvements. Avoid comments like “+1” or “thanks”."></a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link " title="expand to show all comments on this post" href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver#" onclick="">show <b>3</b> more comments</a>
+        </div>         
+    </td>
+</tr>    </tbody></table>
+</div>
+				    <div class="question-status">
+        <h2>                    <b>protected</b> by <a href="http://stackoverflow.com/users/-1/community">Community</a><span class="mod-flair" title="moderator">♦</span> <span dir="ltr"><span title="2017-01-26 14:29:10Z" class="relativetime">Jan 26 at 14:29</span></span>
+</h2>
+        <p>
+Thank you for your interest in this question. 
+Because it has attracted low-quality or spam answers that had to be removed, posting an answer now requires 10 <a href="http://stackoverflow.com/help/whats-reputation">reputation</a> on this site (the <a href="http://stackoverflow.com/help/privileges/new-user">association bonus does not count</a>).
+<br><br>
+Would you like to answer one of these <a href="http://stackoverflow.com/unanswered?fromProtectedNotice=true">unanswered questions</a> instead?
+</p>
+    </div>
+
+
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+Not the answer you're looking for?							Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/javascript" class="post-tag" title="show questions tagged &#39;javascript&#39;" rel="tag">javascript</a> <a href="http://stackoverflow.com/questions/tagged/node.js" class="post-tag" title="show questions tagged &#39;node.js&#39;" rel="tag">node.js</a> <a href="http://stackoverflow.com/questions/tagged/mean-stack" class="post-tag" title="show questions tagged &#39;mean-stack&#39;" rel="tag">mean-stack</a>  or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tbody><tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2015-11-23 11:55:03Z"><b>1 year, 4 months ago</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>14185 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			                <tr>
+			                    <td>
+			                        <p class="label-key">active</p>
+			                    </td>
+			                    <td style="padding-left: 10px">
+			                        <p class="label-key"><b><a href="http://stackoverflow.com/questions/33870520/npm-install-cannot-find-module-semver?lastactivity" class="lastactivity-link" title="2017-03-20 10:43:02Z">1 month ago</a></b></p>
+			                    </td>
+			                </tr>
+			        </tbody></table>
+			    </div>
+						
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk1060246637",[5,17,2221,1129,43]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk1060246637"><div id="careersadsdoublehigh" style="display:none;"></div><img height="0px" width="0px" border="0" style="position: absolute; display: none !important;" src="http://engine.adzerk.net/i.gif?e=eyJhdiI6NDE0LCJhdCI6NSwiYnQiOjAsImNtIjo5MjEsImNoIjoxMTc4LCJjayI6e30sImNyIjoyNjg4LCJkaSI6ImEzODhhMTNiMjY3YjRjNjNhYjcyZjZmMTZiNDQ1YTUwIiwiZG0iOjEsImZjIjoyNDg1LCJmbCI6MjY2MywiaXAiOiIyMDAuMTg2LjUwLjE2MiIsImt3IjoiamF2YXNjcmlwdCxub2RlLmpzLG1lYW4tc3RhY2sseC1jcm9zcy1zaXRlLXNlcnZlcmZhdWx0LmNvbSIsIm53IjoyMiwicGMiOjAsImVjIjowLCJwciI6NjE3MzcsInJ0IjoxLCJyZiI6Imh0dHBzOi8vd3d3Lmdvb2dsZS5jb20uYnIvIiwic2IiOiJpLTAxMTIxYWE3YjBjNzM4MzUzIiwic3AiOjQxMjQsInN0Ijo4Mjc3LCJ1ayI6InVlMS01M2RjNGUxOTgyZDI0MGM1OWFjNGQ3N2Q4OGMwZjY4YSIsInpuIjo0NSwidHMiOjE0OTI3MjA0MTcxNzIsImJmIjp0cnVlLCJwbiI6ImFkemVyazEwNjAyNDY2MzciLCJmcSI6MH0&amp;s=6rMGZ2doQPBryYqMZHeSDzzGo4M"></div>
+            <div id="hireme"></div>
+        <script>
+window.clc_request = 'AriT9IQsiNQIAAAAALjSBAICAAAAAgAAAAA8AAAAfGphdmFzY3JpcHR8bm9kZS5qc3xtZWFuLXN0YWNrfHgtY3Jvc3Mtc2l0ZS1zZXJ2ZXJmYXVsdC5jb218AG17w17WuoxjkoU';
+;(function(n){var t,u,r,i;try{if(typeof[].indexOf!="function")return;if(window.attachEvent&&!window.addEventListener)return;if(n.allowed[0]!=="*"&&n.allowed.indexOf(location.hostname)===-1)return;if(t=window,t.clc=t.clc||{},u=t.clc_request||t.clcfl_request,t.clc.init=t.clc.init||[],t.clc.init.push(function(n){return n.load()}),t.clc.options){for(r in t.clc.options)n[r]=t.clc.options[r];t.clc.options=n}else t.clc.options=n;i=document.createElement("script");i.async=!0;i.src=n.lib;document.body.appendChild(i)}catch(f){console.error("[clc] Error in loader:",f)}}).call(null, {"lib":"https://cdn.sstatic.net/clc/clc.min.js?v=77a9386790c1","u":"https://clc.stackoverflow.com/markup.js","azw":true,"kt":2000,"tto":true,"d":{"sb":["hireme","clc-sb"],"tlb":["careers1","clc-tlb"],"mlb":["careers3","clc-mlb"]},"h":"clc.stackoverflow.com","autoload":true,"allowed":["stackoverflow.com","serverfault.com","blog.codinghorror.com","talent.stackoverflow.com"]});        </script>
+			
+
+            <div class="module sidebar-linked">
+	<h4 id="h-linked">Linked</h4>
+	<div class="linked" data-tracker="lq=1">
+
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/30043872?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">53</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/30043872/docker-compose-node-modules-not-present-in-a-volume-after-npm-install-succeeds?noredirect=1&amp;lq=1" class="question-hyperlink">Docker-compose: node_modules not present in a volume after npm install succeeds</a>
+</div>
+<div class="spacer">
+	<a href="http://stackoverflow.com/q/42112366?lq=1" title="Vote score (upvotes - downvotes)">
+		<div class="answer-votes  default">0</div>
+	</a>
+	<a href="http://stackoverflow.com/questions/42112366/upgrade-graceful-fs-module-to-a-recent-version?noredirect=1&amp;lq=1" class="question-hyperlink">Upgrade graceful-fs module to a recent version</a>
+</div>			</div>
+</div>
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/10972176?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted extra-large">1043</div></a><a href="http://stackoverflow.com/questions/10972176/find-the-version-of-an-installed-npm-package?rq=1" class="question-hyperlink">Find the version of an installed npm package</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/13584852?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">7</div></a><a href="http://stackoverflow.com/questions/13584852/node-js-0-8-15-npm-error-cannot-find-module-proto-list?rq=1" class="question-hyperlink">Node.js 0.8.15 npm Error: Cannot find module 'proto-list'</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/21633085?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">2</div></a><a href="http://stackoverflow.com/questions/21633085/cannot-find-module-sails?rq=1" class="question-hyperlink">Cannot find module 'sails'</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/33758014?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="http://stackoverflow.com/questions/33758014/error-while-running-cloned-nodejs-project-in-my-laptop?rq=1" class="question-hyperlink">error while running cloned nodejs project in my laptop</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/33967157?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="http://stackoverflow.com/questions/33967157/error-when-using-npm-command?rq=1" class="question-hyperlink">Error when using npm command</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/34010476?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">23</div></a><a href="http://stackoverflow.com/questions/34010476/cannot-find-module-npmlog-error-message-when-using-npm-command?rq=1" class="question-hyperlink">Cannot find module 'npmlog' error message when using npm command</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/34184342?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="http://stackoverflow.com/questions/34184342/nodejs-error-nodeproxy-node-setting-up-mozilla-open-badges?rq=1" class="question-hyperlink">nodejs error (nodeproxy.node) setting up Mozilla Open Badges</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/35568243?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">2</div></a><a href="http://stackoverflow.com/questions/35568243/return-process-dlopenmodule-path-makelongfilename?rq=1" class="question-hyperlink">return process.dlopen(module, path._makeLong(filename));</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/37356227?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="http://stackoverflow.com/questions/37356227/error-cannot-find-module-less?rq=1" class="question-hyperlink">Error: Cannot find module 'less'</a></div><div class="spacer js-gps-track"><a href="http://stackoverflow.com/q/37829618?rq=1" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="http://stackoverflow.com/questions/37829618/error-cannot-find-module-graceful-fs-in-jenkins?rq=1" class="question-hyperlink">Error: Cannot find module 'graceful-fs' in Jenkins</a></div>
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module tex2jax_ignore">
+    <h4>
+        <a href="https://stackexchange.com/questions?tab=hot" class="js-gps-track" data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li>
+                <div class="favicon favicon-workplace" title="The Workplace Stack Exchange"></div><a href="https://workplace.stackexchange.com/questions/89396/my-coworker-emailed-me-a-root-password-that-im-not-supposed-to-have-should-i-t" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:423 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    My coworker emailed me a root password that I'm not supposed to have. Should I tell my boss, and if so how do I tell without sounding petty?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="https://codegolf.stackexchange.com/questions/117007/shorten-an-absolute-path" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Shorten an absolute path
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-bicycles" title="Bicycles Stack Exchange"></div><a href="https://bicycles.stackexchange.com/questions/46312/threatening-swerving-by-driver-should-i-report-it-canada" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:126 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Threatening swerving by driver - should I report it? (Canada)
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="https://english.stackexchange.com/questions/385505/what-is-it-called-when-experts-think-they-only-know-a-small-part-of-a-topic-and" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is it called when experts think they only know a small part of a topic and amateurs think they know almost all of a topic?
+                </a>
+
+            </li>
+            <li>
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="https://rpg.stackexchange.com/questions/98176/what-do-you-do-when-your-players-guess-your-plots" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What do you do when your players guess your plots?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-german" title="German Language Stack Exchange"></div><a href="https://german.stackexchange.com/questions/36204/why-does-the-reflexive-pronoun-receive-a-sentence-accent-in-the-following-senten" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:253 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why does the reflexive pronoun receive a sentence accent in the following sentence?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-english" title="English Language &amp; Usage Stack Exchange"></div><a href="https://english.stackexchange.com/questions/385333/bill-o-reilly-is-forced-out-at-fox-news" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:97 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Bill O’Reilly Is Forced Out at Fox News
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-music" title="Music: Practice &amp; Theory Stack Exchange"></div><a href="https://music.stackexchange.com/questions/56553/are-there-any-cases-that-a-minor-triad-can-be-a-dominant-chord" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:240 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Are there any cases that a minor triad can be a dominant chord?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-gaming" title="Arqade"></div><a href="https://gaming.stackexchange.com/questions/307366/how-do-i-slide-on-my-shield" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:41 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I slide on my shield?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-history" title="History Stack Exchange"></div><a href="https://history.stackexchange.com/questions/37591/venezuelan-crisis-of-1902-03-why-is-there-a-russian-flag-on-the-cover-of-the-pr" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:324 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Venezuelan crisis of 1902–03: Why is there a Russian flag on the cover of the prominent newspaper 'Le Petite Parisien'?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="https://rpg.stackexchange.com/questions/98401/what-happens-to-dying-pcs-when-combat-ends" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What happens to dying PCs when combat ends?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="https://worldbuilding.stackexchange.com/questions/78565/what-could-be-a-valid-reason-for-an-entire-section-of-a-continent-to-remain-unex" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What could be a valid reason for an entire section of a continent to remain unexplored and undiscovered, by the rest of the world in medieval times?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-salesforce" title="Salesforce Stack Exchange"></div><a href="https://salesforce.stackexchange.com/questions/170867/can-i-export-related-fields-using-data-loader" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:459 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    can I export related fields using data loader?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-gardening" title="Gardening &amp; Landscaping Stack Exchange"></div><a href="https://gardening.stackexchange.com/questions/32732/what-makes-potting-soil-good-for-pots" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:269 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What makes potting soil good for pots?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="https://math.stackexchange.com/questions/2242402/what-are-all-the-generalizations-needed-to-pass-from-finite-dimensional-linear-a" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What are all the generalizations needed to pass from finite dimensional linear algebra with matrices to fourier series and pdes?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-music" title="Music: Practice &amp; Theory Stack Exchange"></div><a href="https://music.stackexchange.com/questions/56528/is-the-iv-chord-a-perfect-fifth-in-disguise" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:240 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is the IV chord a perfect fifth in disguise?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="https://travel.stackexchange.com/questions/91989/train-from-brussels-to-dusseldorf" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Train from Brussels to Dusseldorf
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="https://travel.stackexchange.com/questions/91990/flight-transfer-via-ireland-with-a-uk-reentry-ban" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Flight transfer via Ireland with a UK reentry ban
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="https://codegolf.stackexchange.com/questions/117017/arbitrary-length-currying" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Arbitrary-length currying
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="https://ell.stackexchange.com/questions/127213/when-i-answer-some-question-on-stackoverflow-sites-people-thank-me-and-say-it-he" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When I answer some question on stackoverflow sites people thank me and say it helped
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/43514665/use-of-auto-funcint-before-deduction-of-auto-in-c14" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Use of 'auto func(int)' before deduction of 'auto' in C++14
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="https://mathoverflow.net/questions/267713/how-to-get-a-closed-form-for-a-possibly-simple-combinatorial-sequence" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to get a closed form for a possibly simple combinatorial sequence
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="https://scifi.stackexchange.com/questions/157671/when-frodo-claimed-the-one-ring-for-himself-did-he-become-a-new-dark-lord" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    When Frodo claimed "The One Ring" for himself, did he become a new Dark Lord?
+                </a>
+
+            </li>
+            <li class="dno js-hidden" style="display: list-item;">
+                <div class="favicon favicon-crypto" title="Cryptography Stack Exchange"></div><a href="https://crypto.stackexchange.com/questions/46716/is-there-a-standard-or-widely-accepted-convention-for-magic-constants-in-crypt" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:281 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Is there a standard, or widely accepted convention, for magic constants in crypto software?
+                </a>
+
+            </li>
+    </ul>
+
+        
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="http://stackoverflow.com/feeds/question/33870520" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/33870520/ivc/4f5c');});
+</script>
+<noscript>
+    &lt;div&gt;&lt;img src="/posts/33870520/ivc/4f5c" class="dno" alt="" width="0" height="0"&gt;&lt;/div&gt;
+</noscript><div style="display:none" id="prettify-lang">lang-js</div></div>
+
+
+        </div>
+    </div><script async="" src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/clc.min.js"></script>
+    <div id="footer" class="categories" role="contentinfo">
+        <div class="footerwrap">            
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                    <a href="http://stackoverflow.com/company/about">about us</a>
+                        <a href="http://stackoverflow.com/tour">tour</a>
+                    <a href="http://stackoverflow.com/help">help</a>
+                    <a href="https://stackoverflow.blog/?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com/">chat</a>
+                    <a href="https://data.stackexchange.com/">data</a>
+                    <a href="https://stackexchange.com/legal">legal</a>
+                    <a href="https://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackoverflow.com/company/work-here">work here</a>
+                    <a href="https://www.stackoverflowbusiness.com/advertise">advertising info</a>
+                        <a href="http://stackoverflow.com/jobs/directory/developer-jobs">developer jobs directory</a>
+
+                    <a onclick="StackExchange.switchMobile(&quot;on&quot;)">mobile</a>
+                    <b><a href="http://stackoverflow.com/contact">contact us</a></b>
+                        <b><a href="https://meta.stackoverflow.com/">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tbody><tr>
+            <th colspan="3">
+                Technology
+            </th>
+            <th>
+                Life / Arts
+            </th>
+            <th>
+                Culture / Recreation
+            </th>
+            <th>
+                Science
+            </th>
+            <th>
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="http://stackoverflow.com/" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="http://serverfault.com/" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="http://superuser.com/" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="http://webapps.stackexchange.com/" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="http://askubuntu.com/" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="http://webmasters.stackexchange.com/" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="http://gamedev.stackexchange.com/" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="http://tex.stackexchange.com/" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                        <li><a href="http://softwareengineering.stackexchange.com/" title="professionals, academics, and students working within the systems development life cycle who care about creating, delivering, and maintaining software responsibly">Software Engineering</a></li>
+                        <li><a href="http://unix.stackexchange.com/" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="http://apple.stackexchange.com/" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="http://wordpress.stackexchange.com/" title="WordPress developers and administrators">WordPress Development</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://gis.stackexchange.com/" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="http://electronics.stackexchange.com/" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="http://android.stackexchange.com/" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="http://security.stackexchange.com/" title="information security professionals">Information Security</a></li>
+                        <li><a href="http://dba.stackexchange.com/" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="http://drupal.stackexchange.com/" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="http://sharepoint.stackexchange.com/" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="http://ux.stackexchange.com/" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="http://mathematica.stackexchange.com/" title="users of Wolfram Mathematica">Mathematica</a></li>
+                        <li><a href="http://salesforce.stackexchange.com/" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="http://expressionengine.stackexchange.com/" title="administrators, end users, developers and designers for ExpressionEngine® CMS">ExpressionEngine® Answers</a></li>
+                        <li><a href="http://crypto.stackexchange.com/" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="http://codereview.stackexchange.com/" title="peer programmer code reviews">Code Review</a></li>
+                        <li><a href="http://magento.stackexchange.com/" title="users of the Magento e-Commerce platform">Magento</a></li>
+                        <li><a href="http://dsp.stackexchange.com/" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+                        <li><a href="http://raspberrypi.stackexchange.com/" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+                        <li><a href="http://codegolf.stackexchange.com/" title="programming puzzle enthusiasts and code golfers">Programming Puzzles &amp; Code Golf</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://photo.stackexchange.com/" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="http://scifi.stackexchange.com/" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="http://graphicdesign.stackexchange.com/" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="http://movies.stackexchange.com/" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="http://music.stackexchange.com/" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                        <li><a href="http://cooking.stackexchange.com/" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="http://diy.stackexchange.com/" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="http://money.stackexchange.com/" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="http://academia.stackexchange.com/" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (8)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://english.stackexchange.com/" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="http://skeptics.stackexchange.com/" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="http://judaism.stackexchange.com/" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="http://travel.stackexchange.com/" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="http://christianity.stackexchange.com/" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="http://ell.stackexchange.com/" title="speakers of other languages learning English">English Language Learners</a></li>
+                        <li><a href="http://japanese.stackexchange.com/" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                        <li><a href="http://gaming.stackexchange.com/" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="http://bicycles.stackexchange.com/" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="http://rpg.stackexchange.com/" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                        <li><a href="http://anime.stackexchange.com/" title="anime and manga fans">Anime &amp; Manga</a></li>
+                        <li><a href="http://mechanics.stackexchange.com/" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (17)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://mathoverflow.net/" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="http://math.stackexchange.com/" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="http://stats.stackexchange.com/" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="http://cstheory.stackexchange.com/" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="http://physics.stackexchange.com/" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="http://chemistry.stackexchange.com/" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="http://biology.stackexchange.com/" title="biology researchers, academics, and students">Biology</a></li>
+                        <li><a href="http://cs.stackexchange.com/" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+                        <li><a href="http://philosophy.stackexchange.com/" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (3)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="http://meta.stackexchange.com/" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="http://stackapps.com/" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="http://area51.stackexchange.com/" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="https://www.stackoverflowbusiness.com/talent">Stack Overflow Talent</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</tbody></table>
+                </div>
+            </div>
+            <div id="copyright">
+                site design / logo © 2017 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2017.4.20.25723
+            </div>
+                </div>
+    </div>
+    <noscript>
+        &lt;div id="noscript-warning"&gt;Stack Overflow works best with JavaScript enabled&lt;img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"&gt;&lt;/div&gt;
+    </noscript>
+
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    
+    
+        
+        ados.run.push(function () {
+                setTimeout(function () { $("#adzerk-user-match").remove(); }, window.AUMIframeDone ? 0 : 2000);
+                ados_setKeywords('javascript,node.js,mean-stack,x-cross-site-serverfault.com');; ados_load();
+        });   
+        
+</script>
+
+    <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-5620270-1');
+                ga('create', 'UA-5620270-59', {name: 'pageData', sampleRate: 5 });
+                ga('set', 'dimension2', '|javascript|node.js|mean-stack|');
+                ga('pageData.set', 'dimension2', '|javascript|node.js|mean-stack|');
+                ga('send', 'pageview');
+                ga('pageData.send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+
+    </script>
+        
+    
+            <script type="text/javascript">
+                
+                (function(appendChild) {
+                    Node.prototype.appendChild = function() {
+                        var parent = this;
+                        var newNode = arguments[0];
+                        if (parent.nodeName === 'HEAD'
+                            && newNode
+                            && newNode.nodeName === 'SCRIPT'
+                            && newNode.src) {
+                            
+                            window.setTimeout(function() {
+                                var result = newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i) || [];
+                                var service = result[1];
+                                if (service) {
+                                    if (service === 'Autocompletion') service =  2;
+                                    else if (service === 'Place') service = 1;
+                                    else service = 0;
+                                    StackExchange.using('gps', function() {
+                                        StackExchange.gps.track('google_maps_places_api.call', { service: service });
+                                    });
+                                }
+                            }, 0);
+                        }
+                        return appendChild.apply(this, arguments);
+                    };
+                })(Node.prototype.appendChild);
+            </script>
+    
+<img src="./javascript - Npm install cannot find module &#39;semver&#39; - Stack Overflow_files/timeout.gif" style="display: none;"></body></html>

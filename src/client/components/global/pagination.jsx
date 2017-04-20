@@ -1,21 +1,24 @@
-import React, { PropTypes } from 'react';
-import FlatButton from 'material-ui/FlatButton';
-import NavigationFirstPage from 'material-ui/svg-icons/navigation/first-page';
-import NavigationLastPage from 'material-ui/svg-icons/navigation/last-page';
+import React, { PropTypes } from "react";
+import FlatButton from "material-ui/FlatButton";
+import NavigationFirstPage from "material-ui/svg-icons/navigation/first-page";
+import NavigationLastPage from "material-ui/svg-icons/navigation/last-page";
 
 const flatButtonStyle = {
-  minWidth: 16,
+  minWidth: 16
 };
 
-const calculateRange = arg => {
+const DISPLAY_FIRST = 2;
+const DISPLAY_SECOND = 0.5;
+
+const calculateRange = (arg) => {
   const { total, current, display } = arg;
   let end = total;
   let start = 1;
   if (display < end) {
     // rounded to the nearest integer smaller
-    let beforeNumber = Math.round(display / 2 - 0.5);
+    let beforeNumber = Math.round(display / DISPLAY_FIRST - DISPLAY_SECOND);
     const afterNumber = beforeNumber;
-    if (display % 2 === 0) {
+    if (display % DISPLAY_FIRST === 0) {
       beforeNumber -= 1;
     }
 
@@ -32,7 +35,7 @@ const calculateRange = arg => {
   return { end, start };
 };
 
-const getStateFromProps = props => {
+const getStateFromProps = (props) => {
   let { total, current, display } = props;
   total = total > 0 ? total : 1;
   current = current > 0 ? current : 1;
@@ -53,7 +56,7 @@ const Page = ({ value, isActive, onClick }) => (
 Page.propTypes = {
   value: PropTypes.number,
   isActive: PropTypes.bool,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 const FirstPageLink = ({ onClick }) => (
@@ -65,7 +68,7 @@ const FirstPageLink = ({ onClick }) => (
 );
 
 FirstPageLink.propTypes = {
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 const LastPageLink = ({ onClick }) => (
@@ -76,7 +79,7 @@ const LastPageLink = ({ onClick }) => (
   />
 );
 LastPageLink.propTypes = {
-  onClick: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 class Pagination extends React.Component {
@@ -88,7 +91,7 @@ class Pagination extends React.Component {
 
     this.state = {
       ...tem,
-      ...calculateRange(tem),
+      ...calculateRange(tem)
     };
   }
 
@@ -96,7 +99,7 @@ class Pagination extends React.Component {
     const tem = getStateFromProps(nextProps);
     this.setState({
       ...tem,
-      ...calculateRange(tem),
+      ...calculateRange(tem)
     });
   }
 
@@ -105,7 +108,7 @@ class Pagination extends React.Component {
     this.props.onChange(current);
     this.setState({
       ...tem,
-      ...calculateRange(tem),
+      ...calculateRange(tem)
     });
   }
 
@@ -145,6 +148,6 @@ Pagination.propTypes = {
   current: PropTypes.number,
   // eslint-disable-next-line react/no-unused-prop-types
   display: PropTypes.number,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func
 };
 export default Pagination;

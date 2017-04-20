@@ -35,8 +35,12 @@ require.ensure(["./sw-registration"], (require) => {
 /**/
 window.webappStart = () => {
   const initialState = window.__PRELOADED_STATE__;
-  const loggerMiddleware = createLogger()
-  const store = createStore(rootReducer, initialState, composeEnhancers(applyMiddleware(thunkMiddleware, loggerMiddleware)));
+  const loggerMiddleware = createLogger();
+  const store = createStore(
+    rootReducer,
+    initialState,
+    composeEnhancers(applyMiddleware(thunkMiddleware, loggerMiddleware))
+  );
   render(
     <Provider store={store}>
       <Router history={browserHistory} store={store}>{routes}</Router>

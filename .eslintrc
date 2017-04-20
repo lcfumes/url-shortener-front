@@ -1,0 +1,13 @@
+{
+  "globals": {
+    "document": true,
+    "foo": true,
+    "window": true,
+    "localStorage": true
+  },
+  indent: [
+  	"error", 
+  	2, 
+  	{ "SwitchCase": 1 }
+  ]
+}

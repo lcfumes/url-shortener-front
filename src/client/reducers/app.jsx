@@ -1,3 +1,3 @@
-export const appReducer = (store, action) => {
-  return store || { uri: "" }
+export const appReducer = (store) => {
+  return store || { uri: "" };
 };
