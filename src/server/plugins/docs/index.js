@@ -9,7 +9,7 @@ exports.register = (server, options, next) => {
     path: '/api/docs/',
     handler: (request, reply) => {
       let page = (request.query.page === undefined) ? 1 : request.query.page;
-      fetch(`http://api.lfum.es?page=${request.query.page}`)
+      fetch(`https://api.lfum.es?page=${request.query.page}`)
       .then(response => response.json())
       .then(json => {
         reply(json)
@@ -21,7 +21,7 @@ exports.register = (server, options, next) => {
     method: 'POST',
     path: '/api/docs/',
     handler: (request, reply) => {
-      fetch(`http://api.lfum.es`, {
+      fetch(`https://api.lfum.es`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -34,6 +34,7 @@ exports.register = (server, options, next) => {
       .then(response => {
         reply(response)
       })
+      .catch(response => console.log(response))
     }
   })
 
